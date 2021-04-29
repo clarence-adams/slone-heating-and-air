@@ -16,6 +16,9 @@ footer {
 }
 .navbar {
 }
+#logo {
+  width: 100vw;
+}
 #armstrong-logo {
   width: 50%;
   height: 50%;

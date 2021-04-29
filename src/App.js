@@ -6,13 +6,13 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1><img src={logo} alt="logo"/></h1>
+        <h1><img id="logo" src={logo} alt="logo"/></h1>
       </header>
       <div className="navbar">
 
       </div>
       <article>
-        <p>At Slowne heating and cooling we offer full system replacements. We do
+        <p>At Slong heating and cooling we offer full system replacements. We do
         not offer the following services:</p>
         <ul>
           <li>We don't do maintenances</li>
