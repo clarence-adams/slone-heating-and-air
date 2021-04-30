@@ -1,6 +1,6 @@
 import './App.css';
 import logo from './images/logo.png';
-import armstrong from './images/armstrong-air.jpg';
+import armstrong from './images/armstrong-air.png';
 
 function App() {
   return (
@@ -8,11 +8,19 @@ function App() {
       <header>
         <h1><img id="logo" src={logo} alt="logo"/></h1>
       </header>
-      <div className="navbar">
-
+      <div id="navbar">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
       </div>
-      <article>
-        <p>At Slong heating and cooling we offer full system replacements. We do
+      <div id="about">
+        <p>At Slong heating and air we offer full system replacements.</p>
+      </div>
+      <div id="services">
+        <h2>Services</h2>
+        <div className="line"/>
+        <p> We do
         not offer the following services:</p>
         <ul>
           <li>We don't do maintenances</li>
@@ -22,9 +30,18 @@ function App() {
           <img src={armstrong} id="armstrong-logo" alt="armstrong logo"/>
           <li>We reserve the right to not do anything we don't want to</li>
         </ul>
+      </div>
+      <div id="testimonials">
+        <h2>Testimonials</h2>
+        <div className="line"/>
+        <p>They were good - Big Clarence</p>
+      </div>
+      <div id="contact">
+        <h2>Contact</h2>
+        <div className="line"/>
         <p>To schedule a service call please call A-Aron</p>
         <i>Or don't, whatever</i>
-      </article>
+      </div>
       <footer>
         <p>This website is still under construction</p>
       </footer>

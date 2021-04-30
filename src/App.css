@@ -1,23 +1,48 @@
-body {
-  text-align: center;
-  min-height: 100vh;
-  width: 100vw;
-  padding-bottom: 2.5rem;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 header {
-  width: 100vw;
-  border-bottom: black solid 5px;
+  margin: 0;
+  width: 100%;
+}
+h1 {
+  margin: 0;
+  background-color: #7f7f7f;
 }
 footer {
+  padding: 0;
   position: absolute;
   left: 0;
   right: 0;
   text-align: center;
   bottom: 0;
 }
-.navbar {
+.App {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background-color: #f2efea;
 }
-#logo {
+.line {
+  margin: auto;
+  height: 0;
+  width: 40%;
+  border-bottom: solid black 2px;
+}
+#navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: darkgrey;
+  height: 2.5rem;
+}
+#content-wrapper {
+  background-color: slategrey;
 }
 #armstrong-logo {
   max-width: 450px;
