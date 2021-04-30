@@ -44,7 +44,12 @@ footer {
 #content-wrapper {
   background-color: slategrey;
 }
-#armstrong-logo {
+#logo {
+  width: 100%;
   max-width: 450px;
+  height: auto;
+}
+#armstrong-logo {
+  width: 50vw;
   height: auto;
 }
