@@ -3,6 +3,11 @@ import logo from './images/logo.png';
 import armstrong from './images/armstrong-air.png';
 import concord from './images/concord-air.png';
 import { useSpring, animated } from 'react-spring';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments, faEnvelope)
 
 function App() {
   const img0 = useSpring(
@@ -19,7 +24,7 @@ function App() {
       delay: 1000
     }
   )
-  
+
   return (
     <div className="App">
       <header>
@@ -33,7 +38,7 @@ function App() {
       </header>
       <div id="content">
         <div id="about" class="content-section">
-          <h2>About Us</h2>
+          <h2>About Us <FontAwesomeIcon icon="address-card"/></h2>
           <div class="line"/>
           <p>At Slone Heating and Air we offer equipment replacements using the following trustworthy brands: </p>
           <animated.img style={img0} src={armstrong} id="armstrong-logo" class="logo" alt="armstrong logo"/>
@@ -41,7 +46,7 @@ function App() {
           <animated.img style={img1} src={concord} id="concord-logo" class="logo" alt="concord logo"/>
         </div>
         <div id="services" class="content-section">
-          <h2>Services</h2>
+          <h2>Services <FontAwesomeIcon icon="tools"/></h2>
           <div className="line"/>
           <p> We do
           not offer the following services:</p>
@@ -54,12 +59,13 @@ function App() {
           </ul>
         </div>
         <div id="testimonials" class="content-section">
-          <h2>Testimonials</h2>
+          <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>
           <div className="line"/>
-          <p>They were good - Big Clarence</p>
+          <p><FontAwesomeIcon icon="quote-left"/> They were good <FontAwesomeIcon icon="quote-right"/></p>
+          <p>- Big Clarence</p>
         </div>
         <div id="contact" class="content-section">
-          <h2>Contact</h2>
+          <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
           <div className="line"/>
           <p>To schedule a service call please call A-Aron</p>
           <i>Or don't, whatever</i>
