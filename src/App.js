@@ -5,8 +5,21 @@ import concord from './images/concord-air.png';
 import { useSpring, animated } from 'react-spring';
 
 function App() {
-  const img0 = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 500 })
-  const img1 = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 1000 })
+  const img0 = useSpring(
+    {
+      to: { opacity: 1 },
+      from: { opacity: 0 },
+      delay: 500
+    }
+  )
+  const img1 = useSpring(
+    {
+      to: { opacity: 1 },
+      from: { opacity: 0 },
+      delay: 1000
+    }
+  )
+  
   return (
     <div className="App">
       <header>
