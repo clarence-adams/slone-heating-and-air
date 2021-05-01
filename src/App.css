@@ -1,27 +1,24 @@
 @media screen and (max-height: 800px) {
   #footer {
-    position: relative;
+    position: static;
   }
 }
 
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 header {
-  margin: 0;
+  position: fixed;
+  top: 0;
   width: 100%;
+  height: 136px;
 }
 h1 {
   margin: 0;
-  background-color: #7f7f7f;
-}
-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
+  background-color: #25AED0;
+  border-bottom: black solid 5px;
 }
 .App {
   margin: 0;
@@ -30,29 +27,82 @@ footer {
   min-height: 100vh;
   width: 100vw;
   max-width: 100%;
-  background-color: #f2efea;
+  background-color: #DEF0F7;
+}
+.nav-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px 0 5px;
+  text-decoration: none;
+  height: 2.5rem;
+}
+.nav-button:visited {
+  color: black;
+}
+.nav-button:hover {
+  background-color: #FFB703;
+}
+.nav-button:active {
+  background-color: #FFB703;
+}
+.content-header {
+}
+.content-section {
+  margin: 0;
+  padding-top: 5px;
+  scroll-margin-top: 136px;
 }
 .line {
   margin: auto;
-  height: 0;
+  height: 0px;
   width: 40%;
-  border-bottom: solid black 2px;
+  border-bottom: solid #FF961F 5px;
+}
+.logo {
+  margin: 0;
+  width: 100%;
+  max-width: 450px;
+  height: auto;
 }
 #navbar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: darkgrey;
+  margin: 0;
+  padding: 0;
+  background-color: #FF961F;
   height: 2.5rem;
+  border-bottom: black solid 5px;
+}
+#content {
+  padding-top: 136px;
+}
+#about {
+  min-height: 100vh;
+}
+#services {
+}
+#testimonials {
+}
+#contact {
 }
 #logo {
-  width: 100%;
-  max-width: 450px;
+  margin: 0;
+  width: 66%;
   height: auto;
 }
 #armstrong-logo {
   width: 50vw;
   max-width: 450px;
   height: auto;
+}
+#footer {
+  margin-top: 5vh;
+  height: 2.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
 }
