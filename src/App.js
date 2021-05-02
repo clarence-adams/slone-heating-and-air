@@ -5,9 +5,25 @@ import concord from './images/concord-air.png';
 import { useSpring, animated } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import {
+  faQuoteRight,
+  faQuoteLeft,
+  faAddressCard,
+  faTools,
+  faComments,
+  faEnvelope,
+  faWrench
+} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments, faEnvelope)
+library.add(
+  faQuoteRight,
+  faQuoteLeft,
+  faAddressCard,
+  faTools,
+  faComments,
+  faEnvelope,
+  faWrench
+)
 
 function App() {
   const img0 = useSpring(
@@ -72,7 +88,7 @@ function App() {
         </div>
       </div>
       <footer id="footer">
-        <p>This website is still under construction</p>
+        <p>This website is still under construction <FontAwesomeIcon icon="wrench"/></p>
       </footer>
     </div>
   )

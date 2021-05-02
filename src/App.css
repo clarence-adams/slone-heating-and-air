@@ -17,7 +17,7 @@ header {
 }
 h1 {
   margin: 0;
-  background-color: #25AED0;
+  background-color: #279AF1; /* Carolina Blue */
   border-bottom: black solid 5px;
 }
 .App {
@@ -27,7 +27,7 @@ h1 {
   min-height: 100vh;
   width: 100vw;
   max-width: 100%;
-  background-color: #DEF0F7;
+  background-color: #ECF6FE; /* Alice Blue */
 }
 .nav-button {
   display: flex;
