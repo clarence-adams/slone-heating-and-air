@@ -3,6 +3,7 @@ import logo from './images/logo.png';
 import armstrong from './images/armstrong-air.png';
 import concord from './images/concord-air.png';
 import { useSpring, animated } from 'react-spring';
+import VisibilitySensor from "react-visibility-sensor";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -33,7 +34,7 @@ function App() {
 
   // testimonial component props
   const testimonials = [{
-    "testimonial": "They were good",
+    "testimonial": "They were good AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     "customer": "Big Clarence"
   },
   {
@@ -47,6 +48,22 @@ function App() {
   {
     "testimonial": "I like them as well",
     "customer": "Ajjea Slone"
+  },
+  {
+    "testimonial": "An excellent company ran by an excellent baby boy",
+    "customer": "Aaron's Mom"
+  },
+  {
+    "testimonial": "The equipment they install is excellent quality",
+    "customer": "Tim Jenks"
+  },
+  {
+    "testimonial": "Southern Comfort's hoodies are better",
+    "customer": "Anonymous Employee"
+  },
+  {
+    "testimonial": "EeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeeeEEEEEEEEEEEEEEEEEEeeeEeeeEEeeEEeeEeeEEeeEEeeEEeEEEEEEEEEEeeEeeeeeeEeeEeeEe",
+    "customer": "Mini Me"
   }]
 
   return (
@@ -55,8 +72,8 @@ function App() {
         <h1><img id="logo" src={logo} alt="logo"/></h1>
         <div id="navbar">
           <a class="nav-button" href="#about">About</a>
-          <a class="nav-button" href="#services">Services</a>
           <a class="nav-button" href="#testimonials">Testimonials</a>
+          <a class="nav-button" href="#services">Services</a>
           <a class="nav-button" href="#contact">Contact</a>
         </div>
       </header>
@@ -68,6 +85,16 @@ function App() {
           <animated.img style={img0} src={armstrong} id="armstrong-logo" class="logo" alt="armstrong logo"/>
           <br/>
           <animated.img style={img1} src={concord} id="concord-logo" class="logo" alt="concord logo"/>
+        </div>
+        <div id="testimonials" class="content-section">
+          <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>
+          <div className="line"/>
+          <div id="testimonials-content">
+            {testimonials.map((element) =>
+              <Testimonial testimonial={element.testimonial}
+              customer={element.customer}/>
+            )}
+          </div>
         </div>
         <div id="services" class="content-section">
           <h2>Services <FontAwesomeIcon icon="tools"/></h2>
@@ -81,16 +108,6 @@ function App() {
             <li>We don't install anything other than Armstrong Air</li>
             <li>We reserve the right to not do anything we don't want to</li>
           </ul>
-        </div>
-        <div id="testimonials" class="content-section">
-          <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>
-          <div className="line"/>
-          <div id="testimonials-content">
-            {testimonials.map((element) =>
-              <Testimonial testimonial={element.testimonial}
-              customer={element.customer}/>
-            )}
-          </div>
         </div>
         <div id="contact" class="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
@@ -107,11 +124,32 @@ function App() {
 }
 
 function Testimonial(props) {
+  const spring = useSpring(
+    {
+      to: { opacity: 1 },
+      from: { opacity: 0 },
+      delay: 800
+    }
+  )
+
   return (
-    <div className="testimonial">
-      <p><FontAwesomeIcon icon="quote-left"/><i> {props.testimonial} </i><FontAwesomeIcon icon="quote-right"/></p>
-      <p>- {props.customer}</p>
-    </div>
+    <VisibilitySensor>
+      {({ isVisible }) =>
+        <animated.div className="testimonial" style={spring}>
+          <div class="quote-left-wrapper">
+            <FontAwesomeIcon id="quote-left" icon="quote-left" size="lg"/>
+          </div>
+          <p><i> {props.testimonial} </i></p>
+          <div class="quote-right-wrapper">
+            <FontAwesomeIcon id="quote-right" icon="quote-right" size="lg"/>
+          </div>
+          <div class="testimonial-line-wrapper">
+            <div class="testimonial-line"/>
+          </div>
+          <p>- {props.customer}</p>
+        </animated.div>
+      }
+    </VisibilitySensor>
   )
 }
 
