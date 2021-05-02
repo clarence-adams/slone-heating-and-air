@@ -6,26 +6,16 @@ import { useSpring, animated } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faQuoteRight,
-  faQuoteLeft,
-  faAddressCard,
-  faTools,
-  faComments,
-  faEnvelope,
+  faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments,faEnvelope,
   faWrench
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(
-  faQuoteRight,
-  faQuoteLeft,
-  faAddressCard,
-  faTools,
-  faComments,
-  faEnvelope,
-  faWrench
+library.add(faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments,
+  faEnvelope, faWrench
 )
 
 function App() {
+  // spring-react props
   const img0 = useSpring(
     {
       to: { opacity: 1 },
@@ -40,6 +30,24 @@ function App() {
       delay: 1000
     }
   )
+
+  // testimonial component props
+  const testimonials = [{
+    "testimonial": "They were good",
+    "customer": "Big Clarence"
+  },
+  {
+    "testimonial": "Leave me alone",
+    "customer": "Gauge Adams"
+  },
+  {
+    "testimonial": "They're my favorite HVAC company",
+    "customer": "Aaron Slone"
+  },
+  {
+    "testimonial": "I like them as well",
+    "customer": "Ajjea Slone"
+  }]
 
   return (
     <div className="App">
@@ -77,8 +85,12 @@ function App() {
         <div id="testimonials" class="content-section">
           <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>
           <div className="line"/>
-          <p><FontAwesomeIcon icon="quote-left"/> They were good <FontAwesomeIcon icon="quote-right"/></p>
-          <p>- Big Clarence</p>
+          <div id="testimonials-content">
+            {testimonials.map((element) =>
+              <Testimonial testimonial={element.testimonial}
+              customer={element.customer}/>
+            )}
+          </div>
         </div>
         <div id="contact" class="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
@@ -90,6 +102,15 @@ function App() {
       <footer id="footer">
         <p>This website is still under construction <FontAwesomeIcon icon="wrench"/></p>
       </footer>
+    </div>
+  )
+}
+
+function Testimonial(props) {
+  return (
+    <div className="testimonial">
+      <p><FontAwesomeIcon icon="quote-left"/><i> {props.testimonial} </i><FontAwesomeIcon icon="quote-right"/></p>
+      <p>- {props.customer}</p>
     </div>
   )
 }

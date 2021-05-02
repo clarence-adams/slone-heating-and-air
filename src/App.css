@@ -42,10 +42,10 @@ h1 {
   color: black;
 }
 .nav-button:hover {
-  background-color: #FFB703;
+  background-color: #FFB703; /* Honey Yellow */
 }
 .nav-button:active {
-  background-color: #FFB703;
+  background-color: #FFB703; /* Honey Yellow */
 }
 .content-header {
 }
@@ -57,7 +57,7 @@ h1 {
 .line {
   margin: auto;
   height: 0px;
-  width: 40%;
+  width: 33.33%;
   border-bottom: solid #FF961F 5px;
 }
 .logo {
@@ -66,6 +66,14 @@ h1 {
   max-width: 450px;
   height: auto;
 }
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 50%;
+  background-color: #3BA3F2;
+}
 #navbar {
   display: flex;
   justify-content: center;
@@ -73,7 +81,7 @@ h1 {
   gap: 10px;
   margin: 0;
   padding: 0;
-  background-color: #FF961F;
+  background-color: #FF961F; /* Yellow Orange Color Wheel */
   height: 2.5rem;
   border-bottom: black solid 5px;
 }
@@ -86,6 +94,16 @@ h1 {
 #services {
 }
 #testimonials {
+  min-height: 100vh;
+}
+#testimonials-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  flex-wrap: wrap;
+  height: 100%;
+  margin: 10px;
 }
 #contact {
 }
