@@ -1,14 +1,21 @@
-@media screen and (max-height: 800px) {
-  #footer {
-    position: static;
-  }
-}
-
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+
+.App {
+  margin: 0;
+  text-align: center;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background-color: #ECF6FE; /* Alice Blue */
+}
+
+/* Header */
+
 header {
   position: fixed;
   top: 0;
@@ -19,15 +26,6 @@ h1 {
   margin: 0;
   background-color: #279AF1; /* Carolina Blue */
   border-bottom: black solid 5px;
-}
-.App {
-  margin: 0;
-  text-align: center;
-  height: 100%;
-  min-height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-  background-color: #ECF6FE; /* Alice Blue */
 }
 .nav-button {
   display: flex;
@@ -47,8 +45,25 @@ h1 {
 .nav-button:active {
   background-color: #FFB703; /* Honey Yellow */
 }
-.content-header {
+#logo {
+  margin: 0;
+  width: 66%;
+  height: auto;
 }
+#navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  background-color: #FF961F; /* Yellow Orange Color Wheel */
+  height: 2.5rem;
+  border-bottom: black solid 5px;
+}
+
+/* Content */
+
 .content-section {
   margin: 0;
   padding-top: 5px;
@@ -60,18 +75,31 @@ h1 {
   width: 33.33%;
   border-bottom: solid #FF961F 5px;
 }
+#content {
+  padding-top: 136px;
+}
+
+/* About */
+
 .logo {
   margin: 0;
   width: 100%;
   max-width: 450px;
   height: auto;
 }
+#about {
+  min-height: 100vh;
+}
+
+/* Testimonials */
+
 .testimonial {
   display: flex;
   justify-content: center;
+  align-items: center;
+  align-content: center;
   flex-flow: wrap;
   flex-basis: 42%;
-  margin: 25px;
   padding: 10px;
   word-break: break-word;
   border: solid #3BA3F2 5px;
@@ -98,49 +126,33 @@ h1 {
   flex-basis: 100%;
   border-bottom: solid #3BA3F2 5px;
 }
-#navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  background-color: #FF961F; /* Yellow Orange Color Wheel */
-  height: 2.5rem;
-  border-bottom: black solid 5px;
-}
-#content {
-  padding-top: 136px;
-}
-#about {
-  min-height: 100vh;
-}
-#services {
-}
 #testimonials {
   min-height: 100vh;
 }
 #testimonials-content {
   display: inline-flex;
   justify-content: center;
-  align-content: stretch;
-  align-items: flex-start;
+  align-content: center;
+  align-items: stretch;
   flex-flow: wrap;
+  padding-top: 25px;
+  gap: 25px;
   width: 100%;
   height: 100%;
 }
+
+/* Services */
+
+#services {
+}
+
+/* contact */
+
 #contact {
 }
-#logo {
-  margin: 0;
-  width: 66%;
-  height: auto;
-}
-#armstrong-logo {
-  width: 50vw;
-  max-width: 450px;
-  height: auto;
-}
+
+/* footer */
+
 #footer {
   margin-top: 5vh;
   height: 2.5rem;

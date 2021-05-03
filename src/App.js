@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from "react";
 import logo from './images/logo.png';
 import armstrong from './images/armstrong-air.png';
 import concord from './images/concord-air.png';
@@ -124,31 +125,35 @@ function App() {
 }
 
 function Testimonial(props) {
-  const spring = useSpring(
-    {
-      to: { opacity: 1 },
-      from: { opacity: 0 },
-      delay: 800
+  const [visible, setVisible] = useState(false)
+
+  const fadeIn = useSpring({
+    from: {opacity: 0},
+    to: {opacity: visible ? 1 : 0},
+    delay: 200
+  });
+
+  const onChange = function (isVisible) {
+    if (isVisible) {
+      setVisible(true)
     }
-  )
+  }
 
   return (
-    <VisibilitySensor>
-      {({ isVisible }) =>
-        <animated.div className="testimonial" style={spring}>
-          <div class="quote-left-wrapper">
-            <FontAwesomeIcon id="quote-left" icon="quote-left" size="lg"/>
-          </div>
-          <p><i> {props.testimonial} </i></p>
-          <div class="quote-right-wrapper">
-            <FontAwesomeIcon id="quote-right" icon="quote-right" size="lg"/>
-          </div>
-          <div class="testimonial-line-wrapper">
-            <div class="testimonial-line"/>
-          </div>
-          <p>- {props.customer}</p>
-        </animated.div>
-      }
+    <VisibilitySensor onChange={onChange}>
+      <animated.div className="testimonial" style={fadeIn}>
+        <div class="quote-left-wrapper">
+          <FontAwesomeIcon icon="quote-left" size="lg"/>
+        </div>
+        <p><i> {props.testimonial} </i></p>
+        <div class="quote-right-wrapper">
+          <FontAwesomeIcon icon="quote-right" size="lg"/>
+        </div>
+        <div class="testimonial-line-wrapper">
+          <div class="testimonial-line"/>
+        </div>
+        <p>- {props.customer}</p>
+      </animated.div>
     </VisibilitySensor>
   )
 }
