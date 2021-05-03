@@ -11,7 +11,7 @@ html, body {
   min-height: 100vh;
   width: 100vw;
   max-width: 100%;
-  background-color: #ECF6FE; /* Alice Blue */
+  background-color: #ECF6FE;
 }
 
 /* Header */
@@ -24,7 +24,7 @@ header {
 }
 h1 {
   margin: 0;
-  background-color: #279AF1; /* Carolina Blue */
+  background-color: #001E3D;
   border-bottom: black solid 5px;
 }
 .nav-button {
@@ -34,21 +34,22 @@ h1 {
   padding: 0 5px 0 5px;
   text-decoration: none;
   height: 2.5rem;
-  color: black;
+  color: white;
 }
 .nav-button:visited {
-  color: black;
+  color: white;
 }
 .nav-button:hover {
-  background-color: #FFB703; /* Honey Yellow */
+  background-color: #2C455F;
 }
 .nav-button:active {
-  background-color: #FFB703; /* Honey Yellow */
+  background-color: #2C455F;
 }
 #logo {
   margin: 0;
-  width: 66%;
   height: auto;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 #navbar {
   display: flex;
@@ -57,7 +58,7 @@ h1 {
   gap: 10px;
   margin: 0;
   padding: 0;
-  background-color: #FF961F; /* Yellow Orange Color Wheel */
+  background-color: #17324F;
   height: 2.5rem;
   border-bottom: black solid 5px;
 }
@@ -73,7 +74,7 @@ h1 {
   margin: auto;
   height: 0px;
   width: 33.33%;
-  border-bottom: solid #FF961F 5px;
+  border-bottom: solid #2C455F 5px;
 }
 #content {
   padding-top: 136px;
@@ -84,6 +85,7 @@ h1 {
 .logo {
   margin: 0;
   width: 100%;
+  height: auto;
   max-width: 450px;
   height: auto;
 }
@@ -99,11 +101,11 @@ h1 {
   align-items: center;
   align-content: center;
   flex-flow: wrap;
-  flex-basis: 42%;
+  flex-basis: 45%;
+  flex-grow: 1;
   padding: 10px;
   word-break: break-word;
-  border: solid #3BA3F2 5px;
-  /* background-color: #3BA3F2; */
+  border: solid #0090C1 5px;
 }
 .quote-left-wrapper {
   display: flex;
@@ -124,26 +126,27 @@ h1 {
   height: 0px;
   width: 50%;
   flex-basis: 100%;
-  border-bottom: solid #3BA3F2 5px;
+  border-bottom: solid #0090C1 5px;
 }
 #testimonials {
   min-height: 100vh;
 }
 #testimonials-content {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-content: center;
   align-items: stretch;
   flex-flow: wrap;
-  padding-top: 25px;
+  padding: 25px 25px 25px 25px;
   gap: 25px;
-  width: 100%;
+  max-width: 100%;
   height: 100%;
 }
 
 /* Services */
 
 #services {
+  min-height: 100vh;
 }
 
 /* contact */

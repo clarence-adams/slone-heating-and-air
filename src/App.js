@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from "react";
-import logo from './images/logo.png';
+import logo from './images/logo2.png';
 import armstrong from './images/armstrong-air.png';
 import concord from './images/concord-air.png';
 import { useSpring, animated } from 'react-spring';
@@ -130,7 +130,7 @@ function Testimonial(props) {
   const fadeIn = useSpring({
     from: {opacity: 0},
     to: {opacity: visible ? 1 : 0},
-    delay: 200
+    delay: 400
   });
 
   const onChange = function (isVisible) {
@@ -140,7 +140,7 @@ function Testimonial(props) {
   }
 
   return (
-    <VisibilitySensor onChange={onChange}>
+    <VisibilitySensor onChange={onChange} partialVisibility={true}>
       <animated.div className="testimonial" style={fadeIn}>
         <div class="quote-left-wrapper">
           <FontAwesomeIcon icon="quote-left" size="lg"/>
