@@ -22,14 +22,14 @@ function App() {
     {
       to: { opacity: 1 },
       from: { opacity: 0 },
-      delay: 500
+      delay: 400
     }
   )
   const img1 = useSpring(
     {
       to: { opacity: 1 },
       from: { opacity: 0 },
-      delay: 1000
+      delay: 800
     }
   )
 
@@ -113,8 +113,28 @@ function App() {
         <div id="contact" class="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
           <div className="line"/>
-          <p>To schedule a service call please call A-Aron</p>
-          <i>Or don't, whatever</i>
+          <p>To contact us, fill out the following form and A-Aron will visit you
+           in the middle of the night when you least expect it!</p>
+          <i>This form does not actually do anything yet</i>
+          <form id="contact-form" method="post">
+            <div id="form-group">
+              <div  className="contact-form-element">
+                <label for="name"/>
+                <input type="text" id="name" name="contact-name" placeholder="Name"/>
+              </div>
+              <div className="contact-form-element">
+                <label for="address"/>
+                <input type="text" id="address" name="contact-address" placeholder="Address"/>
+              </div>
+              <div className="contact-form-element">
+                <label for="info"/>
+                <textarea type="text" id="info" name="contact-info" placeholder="Message"/>
+              </div>
+              <div id="contact-form-button" className="contact-form-element" placeholder="Info">
+                <button type="submit">Contact</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <footer id="footer">
