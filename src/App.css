@@ -1,3 +1,9 @@
+@media screen and (max-width: 1024px) {
+  #contact-form {
+    width: 66.66% !important;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -154,6 +160,7 @@ h1 {
 /* contact */
 
 .contact-form-element {
+  padding: 2px;
 }
 #contact {
 }
@@ -170,6 +177,13 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+#name, #email, #address {
+  width: 100%;
+}
+#info {
+  width: 186px;
+  height: 186px;
 }
 #contact-form-button {
   align-self: center;

@@ -122,13 +122,17 @@ function App() {
                 <label for="name"/>
                 <input type="text" id="name" name="contact-name" placeholder="Name"/>
               </div>
+              <div  className="contact-form-element">
+                <label for="email"/>
+                <input type="text" id="email" name="contact-email" placeholder="Email"/>
+              </div>
               <div className="contact-form-element">
                 <label for="address"/>
                 <input type="text" id="address" name="contact-address" placeholder="Address"/>
               </div>
               <div className="contact-form-element">
                 <label for="info"/>
-                <textarea type="text" id="info" name="contact-info" placeholder="Message"/>
+                <textarea type="text" id="info" name="contact-info" placeholder="Message" style={{"resize": "none"}}/>
               </div>
               <div id="contact-form-button" className="contact-form-element" placeholder="Info">
                 <button type="submit">Contact</button>
