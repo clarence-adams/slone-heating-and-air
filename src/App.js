@@ -3,6 +3,7 @@ import { useState } from "react";
 import logo from './images/logo2.png';
 import armstrong from './images/armstrong-air.png';
 import concord from './images/concord-air.png';
+import nuCalgon from './images/nu-calgon.png';
 import { useSpring, animated } from 'react-spring';
 import VisibilitySensor from "react-visibility-sensor";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,39 +33,76 @@ function App() {
       delay: 800
     }
   )
+  const img2 = useSpring(
+    {
+      to: { opacity: 1 },
+      from: { opacity: 0 },
+      delay: 1200
+    }
+  )
 
   // testimonial component props
   const testimonials = [{
-    "testimonial": "They were good AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "customer": "Big Clarence"
+    testimonial: "They were good AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    customer: "Big Clarence"
   },
   {
-    "testimonial": "Leave me alone",
-    "customer": "Gauge Adams"
+    testimonial: "Leave me alone",
+    customer: "Gauge Adams"
   },
   {
-    "testimonial": "They're my favorite HVAC company",
-    "customer": "Aaron Slone"
+    testimonial: "They're my favorite HVAC company",
+    customer: "Aaron Slone"
   },
   {
-    "testimonial": "I like them as well",
-    "customer": "Ajjea Slone"
+    testimonial: "I like them as well",
+    customer: "Ajjea Slone"
   },
   {
-    "testimonial": "An excellent company ran by an excellent baby boy",
-    "customer": "Aaron's Mom"
+    testimonial: "An excellent company ran by an excellent baby boy",
+    customer: "Aaron's Mom"
   },
   {
-    "testimonial": "The equipment they install is excellent quality",
-    "customer": "Tim Jenks"
+    testimonial: "The equipment they install is excellent quality",
+    customer: "Tim Jenks"
   },
   {
-    "testimonial": "Southern Comfort's hoodies are better",
-    "customer": "Anonymous Employee"
+    testimonial: "Southern Comfort's hoodies are better",
+    customer: "Anonymous Employee"
   },
   {
-    "testimonial": "EeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeeeEEEEEEEEEEEEEEEEEEeeeEeeeEEeeEEeeEeeEEeeEEeeEEeEEEEEEEEEEeeEeeeeeeEeeEeeEe",
-    "customer": "Mini Me"
+    testimonial: "EeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeeeEEEEEEEEEEEEEEEEEEe"
+    + "eeEeeeEEeeEEeeEeeEEeeEEeeEEeEEEEEEEEEEeeEeeeeeeEeeEeeEe",
+    customer: "Mini Me"
+  }]
+
+  const services = [{
+    serviceHeader: "Annual Maintenance Plans",
+    serviceDescription: "Regular maintenance will increase the lifespan and "
+    + "efficiency of your HVAC system. During a maintenance various components "
+    + "are thoroughly inspected and their performance is measured to ensure "
+    + "they are operating at peak efficiency. We don't do them."
+  },
+  {
+    serviceHeader: "24 Hour Express Service",
+    serviceDescription: "How are we going to sleep and also answer the phone? "
+    + "If we work 24 hours how are we going to meet the minimum necessary "
+    + "requirements for life? We don't do that either."
+  },
+  {
+    serviceHeader: "Weekend Service",
+    serviceDescription: "We definitely don't do that unless we're feeling real "
+    + "froggy and we never work on Sunday no matter WHAT. PERIODT."
+  },
+  {
+    serviceHeader: "Difficult Equipment Replacements",
+    serviceDescription: "That sounds hard, we're not doing that."
+  },
+  {
+    serviceHeader: "Equipment Brand Variety",
+    serviceDescription: "We don't install anything other than Armstrong Air."
   }]
 
   return (
@@ -82,10 +120,16 @@ function App() {
         <div id="about" class="content-section">
           <h2>About Us <FontAwesomeIcon icon="address-card"/></h2>
           <div class="line"/>
-          <p>At Slone Heating and Air we offer equipment replacements using the following trustworthy brands: </p>
-          <animated.img style={img0} src={armstrong} id="armstrong-logo" class="logo" alt="armstrong logo"/>
+          <p>At Slone Heating and Air we offer equipment replacements using the
+          following trustworthy brands: </p>
+          <animated.img style={img0} src={armstrong} id="armstrong-logo"
+          class="logo" alt="armstrong logo"/>
           <br/>
-          <animated.img style={img1} src={concord} id="concord-logo" class="logo" alt="concord logo"/>
+          <animated.img style={img1} src={concord} id="concord-logo"
+          class="logo" alt="concord logo"/>
+          <br/>
+          <animated.img style={img2} src={nuCalgon} id="nuCalgon-logo"
+          class="logo" alt="Nu-Calgon logo"/>
         </div>
         <div id="testimonials" class="content-section">
           <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>
@@ -100,45 +144,50 @@ function App() {
         <div id="services" class="content-section">
           <h2>Services <FontAwesomeIcon icon="tools"/></h2>
           <div className="line"/>
-          <p> We do
-          not offer the following services:</p>
-          <ul>
-            <li>We don't do maintenances</li>
-            <li>We don't offer 24 hour service</li>
-            <li>We don't work weekends</li>
-            <li>We don't install anything other than Armstrong Air</li>
-            <li>We reserve the right to not do anything we don't want to</li>
-          </ul>
+          <div id="services-content">
+            {services.map((element) =>
+              <Service serviceHeader={element.serviceHeader}
+              serviceDescription={element.serviceDescription}/>
+            )}
+          </div>
+          <i>We reserve the right to not do anything we don't want to</i>
         </div>
         <div id="contact" class="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
           <div className="line"/>
-          <p>To contact us, fill out the following form and A-Aron will visit you
-           in the middle of the night when you least expect it!</p>
+          <p>To contact us, fill out the following form and A-Aron will visit
+          you in the middle of the night when you least expect it!</p>
+          <div id="contact-form-wrapper">
+            <form id="contact-form" method="post">
+              <div id="form-group">
+                <div  className="contact-form-element">
+                  <label for="name"/>
+                  <input type="text" id="name" name="contact-name"
+                  placeholder="Name"/>
+                </div>
+                <div  className="contact-form-element">
+                  <label for="email"/>
+                  <input type="text" id="email" name="contact-email"
+                  placeholder="Email"/>
+                </div>
+                <div className="contact-form-element">
+                  <label for="address"/>
+                  <input type="text" id="address" name="contact-address"
+                  placeholder="Address"/>
+                </div>
+                <div className="contact-form-element">
+                  <label for="info"/>
+                  <textarea type="text" id="info" name="contact-info"
+                  placeholder="Message" style={{"resize": "none"}}/>
+                </div>
+                <div id="contact-form-button" className="contact-form-element"
+                placeholder="Info">
+                  <button type="submit">Contact</button>
+                </div>
+              </div>
+            </form>
+          </div>
           <i>This form does not actually do anything yet</i>
-          <form id="contact-form" method="post">
-            <div id="form-group">
-              <div  className="contact-form-element">
-                <label for="name"/>
-                <input type="text" id="name" name="contact-name" placeholder="Name"/>
-              </div>
-              <div  className="contact-form-element">
-                <label for="email"/>
-                <input type="text" id="email" name="contact-email" placeholder="Email"/>
-              </div>
-              <div className="contact-form-element">
-                <label for="address"/>
-                <input type="text" id="address" name="contact-address" placeholder="Address"/>
-              </div>
-              <div className="contact-form-element">
-                <label for="info"/>
-                <textarea type="text" id="info" name="contact-info" placeholder="Message" style={{"resize": "none"}}/>
-              </div>
-              <div id="contact-form-button" className="contact-form-element" placeholder="Info">
-                <button type="submit">Contact</button>
-              </div>
-            </div>
-          </form>
         </div>
       </div>
       <footer id="footer">
@@ -179,6 +228,15 @@ function Testimonial(props) {
         <p>- {props.customer}</p>
       </animated.div>
     </VisibilitySensor>
+  )
+}
+
+function Service(props) {
+  return (
+    <div className="service">
+      <h2>{props.serviceHeader}</h2>
+      <p>{props.serviceDescription}</p>
+    </div>
   )
 }
 
