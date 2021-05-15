@@ -76,6 +76,7 @@ h1 {
   margin: 0;
   padding-top: 5px;
   scroll-margin-top: 136px;
+  height: 100vh;
 }
 .line {
   margin: auto;
@@ -96,25 +97,19 @@ h1 {
   height: auto;
   margin: 50px 0 0 0;
 }
-#about {
-  min-height: 100vh;
-}
 
 /* Testimonials */
 
 .testimonial {
-  display: flex;
+  flex: 0 0;
   justify-content: center;
   align-items: center;
   align-content: center;
   flex-flow: wrap;
-  flex-basis: 45%;
-  flex-grow: 1;
-  padding: 10px;
+  flex-basis: 100%;
+  padding-right: 25px;
   word-break: break-word;
-  border: solid #0090C1 5px;
-  border-radius: 1em;
-  background-color: #FFFFFF;
+  min-width: 0;
 }
 .quote-left-wrapper {
   display: flex;
@@ -137,19 +132,22 @@ h1 {
   flex-basis: 100%;
   border-bottom: solid #F4B942 3px;
 }
-#testimonials {
-  min-height: 100vh;
+#testimonials-content-wrapper {
+  width: 100%;
+  height: 100%;
 }
 #testimonials-content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
-  align-items: stretch;
-  flex-flow: wrap;
+  width: 33.33%;
+  height: 33.33%;
+  margin: auto;
   padding: 25px;
-  gap: 25px;
-  max-width: 100%;
-  height: 100%;
+  overflow: hidden;
+  border: solid #0090C1 5px;
+  border-radius: 1em;
+  background-color: #FFFFFF;
 }
 
 /* Services */
@@ -160,9 +158,6 @@ h1 {
   text-align: left;
   padding: 0 25px 0 25px;
   word-break: break-word;
-}
-#services {
-  min-height: 100vh;
 }
 #services-content {
   display: flex;
@@ -181,7 +176,7 @@ textarea {
   padding: 2px;
 }
 #contact {
-  min-height: calc(100vh - 234px);
+  height: calc(100vh - 234px);
 }
 #contact-form-wrapper {
   display: flex;
