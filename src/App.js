@@ -10,11 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments,faEnvelope,
-  faWrench
+  faWrench, faArrowLeft, faArrowRight
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments,
-  faEnvelope, faWrench
+  faEnvelope, faWrench, faArrowLeft, faArrowRight
 )
 
 function App() {
@@ -212,10 +212,10 @@ function Testimonials() {
           </div>
           <p>- {testimonials[activeTestimonial].customer}</p>
         </animated.div>
-      </div>
-      <div id="testimonials-controls">
-        <button onClick={previousTestimonial}>Previous</button>
-        <button onClick={nextTestimonial}>Next</button>
+        <div id="testimonials-controls">
+          <FontAwesomeIcon icon="arrow-left" onClick={previousTestimonial} size="2x"/>
+          <FontAwesomeIcon icon="arrow-right" onClick={nextTestimonial} size="2x"/>
+        </div>
       </div>
     </div>
   )
