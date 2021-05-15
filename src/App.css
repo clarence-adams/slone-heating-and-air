@@ -1,6 +1,10 @@
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1000px) {
   #contact-form {
     width: 66.66% !important;
+  }
+  #testimonials-content {
+    width: 66.66% !important;
+    height: 66.66% !important;
   }
 }
 
@@ -76,7 +80,6 @@ h1 {
   margin: 0;
   padding-top: 5px;
   scroll-margin-top: 136px;
-  height: 100vh;
 }
 .line {
   margin: auto;
@@ -86,6 +89,9 @@ h1 {
 }
 #content {
   padding-top: 136px;
+}
+#about, #testimonials, #services{
+  min-height: 100vh;
 }
 
 /* About */
@@ -131,6 +137,9 @@ h1 {
   width: 33.33%;
   flex-basis: 100%;
   border-bottom: solid #F4B942 3px;
+}
+#testimonials {
+  height: 100vh;
 }
 #testimonials-content-wrapper {
   width: 100%;
