@@ -182,11 +182,13 @@ function Testimonials() {
 
     } else {
       setActiveTestimonialX(400)
-      setTimeout(() => setActiveTestimonial(activeTestimonial - 1), 500)
-      setTimeout(() => setImmediate(true), 500)
-      setTimeout(() => setActiveTestimonialX(-400), 500)
-      setTimeout(() => setImmediate(false), 500)
-      setTimeout(() => setActiveTestimonialX(0), 500)
+      setTimeout(() => {
+        setActiveTestimonial(activeTestimonial - 1)
+        setImmediate(true)
+        setActiveTestimonialX(-400)
+        setImmediate(false)
+        setActiveTestimonialX(0)
+      }, 400)
     }
   }
 
@@ -195,11 +197,13 @@ function Testimonials() {
 
     } else {
       setActiveTestimonialX(-400)
-      setTimeout(() => setActiveTestimonial(activeTestimonial + 1), 500)
-      setTimeout(() => setImmediate(true), 500)
-      setTimeout(() => setActiveTestimonialX(400), 500)
-      setTimeout(() => setImmediate(false), 500)
-      setTimeout(() => setActiveTestimonialX(0), 500)
+      setTimeout(() => {
+        setActiveTestimonial(activeTestimonial + 1)
+        setImmediate(true)
+        setActiveTestimonialX(400)
+        setImmediate(false)
+        setActiveTestimonialX(0)
+      }, 400)
     }
   }
 
