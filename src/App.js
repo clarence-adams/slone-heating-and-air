@@ -168,21 +168,25 @@ function Testimonials() {
   }]
 
   const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const [showTestimonial, setShowTestimonial] = useState(true)
+  const [activeTestimonialX, setActiveTestimonialX] = useState(0)
+  const [immediate, setImmediate] = useState(false)
 
-  const fade = useSpring({
-    from: {opacity: 1},
-    to: {opacity: showTestimonial},
-    delay: 300
+  const slide = useSpring({
+    immediate: immediate,
+    from: {translateX: 0},
+    to: {translateX: activeTestimonialX},
   });
 
   const previousTestimonial = () => {
     if (activeTestimonial === 0) {
 
     } else {
-      setShowTestimonial(0)
-      setTimeout(() => {setActiveTestimonial(activeTestimonial - 1)}, 750)
-      setTimeout(() => {setShowTestimonial(1)}, 750)
+      setActiveTestimonialX(400)
+      setTimeout(() => setActiveTestimonial(activeTestimonial - 1), 500)
+      setTimeout(() => setImmediate(true), 500)
+      setTimeout(() => setActiveTestimonialX(-400), 500)
+      setTimeout(() => setImmediate(false), 500)
+      setTimeout(() => setActiveTestimonialX(0), 500)
     }
   }
 
@@ -190,16 +194,19 @@ function Testimonials() {
     if (activeTestimonial === testimonials.length - 1) {
 
     } else {
-      setShowTestimonial(0)
-      setTimeout(() => {setActiveTestimonial(activeTestimonial + 1)}, 750)
-      setTimeout(() => {setShowTestimonial(1)}, 750)
+      setActiveTestimonialX(-400)
+      setTimeout(() => setActiveTestimonial(activeTestimonial + 1), 500)
+      setTimeout(() => setImmediate(true), 500)
+      setTimeout(() => setActiveTestimonialX(400), 500)
+      setTimeout(() => setImmediate(false), 500)
+      setTimeout(() => setActiveTestimonialX(0), 500)
     }
   }
 
   return (
     <div id="testimonials-content-wrapper">
       <div id="testimonials-content">
-        <animated.div className="testimonial" style={fade}>
+        <animated.div className="testimonial" style={slide}>
           <div class="quote-left-wrapper">
             <FontAwesomeIcon icon="quote-left" size="lg"/>
           </div>
@@ -213,8 +220,8 @@ function Testimonials() {
           <p>- {testimonials[activeTestimonial].customer}</p>
         </animated.div>
         <div id="testimonials-controls">
-          <FontAwesomeIcon className="testimonial-button" icon="arrow-left" onClick={previousTestimonial} size="2x"/>
-          <FontAwesomeIcon className="testimonial-button" icon="arrow-right" onClick={nextTestimonial} size="2x"/>
+          <FontAwesomeIcon id="arrow-left" className="testimonial-button" icon="arrow-left" onClick={previousTestimonial} size="2x"/>
+          <FontAwesomeIcon id="arrow-right" className="testimonial-button" icon="arrow-right" onClick={nextTestimonial} size="2x"/>
         </div>
       </div>
     </div>
