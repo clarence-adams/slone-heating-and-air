@@ -207,14 +207,14 @@ function Testimonials() {
           <div class="quote-right-wrapper">
             <FontAwesomeIcon icon="quote-right" size="lg"/>
           </div>
-          <div class="testimonial-line-wrapper">
-            <div class="testimonial-line"/>
+          <div className="testimonial-line-wrapper">
+            <div className="testimonial-line"/>
           </div>
           <p>- {testimonials[activeTestimonial].customer}</p>
         </animated.div>
         <div id="testimonials-controls">
-          <FontAwesomeIcon icon="arrow-left" onClick={previousTestimonial} size="2x"/>
-          <FontAwesomeIcon icon="arrow-right" onClick={nextTestimonial} size="2x"/>
+          <FontAwesomeIcon className="testimonial-button" icon="arrow-left" onClick={previousTestimonial} size="2x"/>
+          <FontAwesomeIcon className="testimonial-button" icon="arrow-right" onClick={nextTestimonial} size="2x"/>
         </div>
       </div>
     </div>
