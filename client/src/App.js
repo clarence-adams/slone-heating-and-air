@@ -273,26 +273,31 @@ function Service(props) {
 function Contact() {
   return (
     <div id="contact-form-wrapper">
-      <form id="contact-form" method="post">
+      <form id="contact-form" action="/contact" method="post">
         <div id="form-group">
           <div  className="contact-form-element">
             <label for="name"/>
-            <input type="text" id="name" name="contact-name"
+            <input type="text" id="name" name="contactName"
             placeholder="Name"/>
           </div>
           <div  className="contact-form-element">
             <label for="email"/>
-            <input type="text" id="email" name="contact-email"
+            <input type="text" id="email" name="contactEmail"
             placeholder="Email"/>
+          </div>
+          <div  className="contact-form-element">
+            <label for="number"/>
+            <input type="text" id="number" name="contactNumber"
+            placeholder="Phone Number"/>
           </div>
           <div className="contact-form-element">
             <label for="address"/>
-            <input type="text" id="address" name="contact-address"
+            <input type="text" id="address" name="contactAddress"
             placeholder="Address"/>
           </div>
           <div className="contact-form-element">
-            <label for="info"/>
-            <textarea type="text" id="info" name="contact-info"
+            <label for="message"/>
+            <textarea type="text" id="message" name="contactMessage"
             placeholder="Message" style={{"resize": "none"}}/>
           </div>
           <div id="contact-form-button" className="contact-form-element"
