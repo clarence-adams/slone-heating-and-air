@@ -90,7 +90,6 @@ function App() {
         </div>
       </header>
       <div id="content">
-      <p>server status: {!data ? "disconnected" : data}</p>
         <div id="about" class="content-section">
           <h2>About Us <FontAwesomeIcon icon="address-card"/></h2>
           <div class="line"/>
@@ -131,7 +130,8 @@ function App() {
           <div>
             <Contact/>
           </div>
-          <i>This form does not actually do anything yet</i>
+          <i>This form does not actually do anything unless server status is connected</i>
+          <p>server status: {!data ? "disconnected" : data}</p>
         </div>
       </div>
       <footer id="footer">
@@ -274,34 +274,33 @@ function Contact() {
   return (
     <div id="contact-form-wrapper">
       <form id="contact-form" action="/contact" method="post">
-        <div id="form-group">
+        <div id="contact-form-group">
           <div  className="contact-form-element">
-            <label for="name"/>
-            <input type="text" id="name" name="contactName"
-            placeholder="Name"/>
+            <label for="name">Name</label>
+            <input type="text" className="contact-input" id="name"
+            name="contactName" placeholder="John Doe"/>
           </div>
           <div  className="contact-form-element">
-            <label for="email"/>
-            <input type="text" id="email" name="contactEmail"
-            placeholder="Email"/>
+            <label for="email">Email</label>
+            <input type="text" className="contact-input" id="email"
+            name="contactEmail" placeholder="john@example.com"/>
           </div>
           <div  className="contact-form-element">
-            <label for="number"/>
-            <input type="text" id="number" name="contactNumber"
-            placeholder="Phone Number"/>
+            <label for="number">Number</label>
+            <input type="text" className="contact-input" id="number"
+            name="contactNumber" placeholder="000-000-0000"/>
           </div>
           <div className="contact-form-element">
-            <label for="address"/>
-            <input type="text" id="address" name="contactAddress"
-            placeholder="Address"/>
+            <label for="address">Address</label>
+            <input type="text" className="contact-input" id="address"
+            name="contactAddress" placeholder="123 Fake Street"/>
           </div>
           <div className="contact-form-element">
-            <label for="message"/>
-            <textarea type="text" id="message" name="contactMessage"
-            placeholder="Message" style={{"resize": "none"}}/>
+            <label for="message">Message</label>
+            <textarea type="text" className="contact-input" id="message"
+            name="contactMessage" placeholder="My A/C is not working"/>
           </div>
-          <div id="contact-form-button" className="contact-form-element"
-          placeholder="Info">
+          <div id="contact-form-button" className="contact-form-element">
             <button type="submit">Contact</button>
           </div>
         </div>

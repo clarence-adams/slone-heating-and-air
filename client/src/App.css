@@ -191,9 +191,17 @@ h1 {
 
 textarea {
   font-family: inherit;
+  resize: vertical;
 }
 .contact-form-element {
-  padding: 2px;
+  padding: 0px 0 5px 0;
+  width: 100%;
+  text-align: left;
+}
+.contact-input {
+  width: calc(100% - 4px);
+  padding: 0;
+  margin: 0;
 }
 #contact {
   min-height: calc(100vh - (5em + 90px));
@@ -202,27 +210,24 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 #contact-form {
   display: flex;
   justify-content: center;
-  margin: 5px auto;
-  padding: 10px 0 10px 0;
+  padding: 25px;
   width: 33.33%;
   border: solid #0090C1 5px;
   border-radius: 1em;
 }
-#form-group {
+#contact-form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-#name, #email, #address {
   width: 100%;
 }
-#info {
-  width: 186px;
-  height: 186px;
+#message {
+  min-height: 200px
 }
 #contact-form-button {
   align-self: center;
