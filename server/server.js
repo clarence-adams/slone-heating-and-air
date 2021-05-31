@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
@@ -43,7 +44,7 @@ app.post('/contact', (req, res) => {
 });
 
 // Have Node serve the files for our built React app
-// app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Handle GET requests to /api route
 app.get("/api", (req, res) => {
