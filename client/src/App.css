@@ -259,15 +259,19 @@ textarea {
   color: black;
 }
 #contact-alert-success {
+  padding: 0px 10px 0px 10px;
   margin: 10px auto 0px auto;
-  width: calc(100% - 10px);
+  /* width minus border width total and padding total */
+  width: calc(100% - 30px);
   background-color: #C7F6C7;
   border: #90EE90 solid 5px;
   border-radius: .5em;
 }
 #contact-alert-error {
+  padding: 0px 10px 0px 10px;
   margin: 10px auto 0px auto;
-  width: calc(100% - 10px);
+  /* width minus border width total and padding total */
+  width: calc(100% - 30px);
   background-color: #FFA27F;
   border: #FF4500 solid 5px;
   border-radius: .5em;
