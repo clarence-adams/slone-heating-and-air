@@ -17,8 +17,6 @@ function Contact() {
   const onMessageChange = event => setMessage(event.target.value)
 
   const submitHandler = () => {
-    setButtonDisabled(true);
-
     const data = {name, email, number, address, message}
     const requestOptions = {
       method: "POST",
@@ -34,6 +32,7 @@ function Contact() {
         } else {
           setContactAlert("Your message has been successfully sent!")
           setContactAlertId("contact-alert-success")
+          setButtonDisabled(true);
         }
       })
       .catch(() => {
