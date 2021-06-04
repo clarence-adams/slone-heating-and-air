@@ -65,8 +65,8 @@ function App() {
         </div>
       </div>
       <footer id="footer">
-        <p>This website is still under construction
-        <FontAwesomeIcon icon="wrench"/></p>
+        <p>This website is still under construction <FontAwesomeIcon
+        icon="wrench"/></p>
       </footer>
     </div>
   )

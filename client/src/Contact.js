@@ -27,7 +27,7 @@ function Contact() {
       .then(res => res.json())
       .then(res => {
         if(res.message === "error" || res.message === undefined) {
-          setContactAlert("There was a problem trying to send your message. Please try again later.")
+          setContactAlert("An error occurred while trying to send your message. Please try again later.")
           setContactAlertId("contact-alert-error")
         } else {
           setContactAlert("Your message has been successfully sent!")
