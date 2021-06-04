@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import logo from './images/logo2.png';
 import armstrong from './images/armstrong-air.png';
 import concord from './images/concord-air.png';
@@ -68,16 +68,6 @@ function App() {
     serviceDescription: "We don't install anything other than Armstrong Air."
   }]
 
-  // full stack testing
-
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
   return (
     <div className="App">
       <header>
@@ -94,8 +84,8 @@ function App() {
           <h2>About Us <FontAwesomeIcon icon="address-card"/></h2>
           <div class="line"/>
           <div class="loose-text-wrapper">
-            <p class="loose-text">At Slone Heating and Air we offer equipment replacements using the
-            following trustworthy brands: </p>
+            <p class="loose-text">At Slone Heating and Air we offer equipment
+            replacements using the following trustworthy brands: </p>
           </div>
           <div id="about-logos">
             <animated.img style={img0} src={armstrong} id="armstrong-logo"
@@ -125,25 +115,26 @@ function App() {
             </div>
           </div>
           <div class="loose-text-wrapper">
-            <i class="loose-text">We reserve the right to not do anything we don't want to</i>
+            <i class="loose-text">We reserve the right to not do anything we
+            don't want to</i>
           </div>
         </div>
         <div id="contact" class="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
           <div className="line"/>
           <div class="loose-text-wrapper">
-            <p class="loose-text">To contact us, fill out the following form and A-Aron will visit
-            you in the middle of the night when you least expect it!</p>
+            <p class="loose-text">To contact us, fill out the following form and
+             A-Aron will visityou in the middle of the night when you least
+             expect it!</p>
           </div>
           <div>
             <Contact/>
           </div>
-          <i>This form does not actually do anything unless server status is connected</i>
-          <p>server status: {!data ? "disconnected" : data}</p>
         </div>
       </div>
       <footer id="footer">
-        <p>This website is still under construction <FontAwesomeIcon icon="wrench"/></p>
+        <p>This website is still under construction
+        <FontAwesomeIcon icon="wrench"/></p>
       </footer>
     </div>
   )
@@ -245,8 +236,10 @@ function Testimonials() {
           <p>- {testimonials[activeTestimonial].customer}</p>
         </animated.div>
         <div id="testimonials-controls">
-          <FontAwesomeIcon id="arrow-left" className="testimonial-button" icon="arrow-left" onClick={previousTestimonial} size="2x"/>
-          <FontAwesomeIcon id="arrow-right" className="testimonial-button" icon="arrow-right" onClick={nextTestimonial} size="2x"/>
+          <FontAwesomeIcon id="arrow-left" className="testimonial-button"
+          icon="arrow-left" onClick={previousTestimonial} size="2x"/>
+          <FontAwesomeIcon id="arrow-right" className="testimonial-button"
+          icon="arrow-right" onClick={nextTestimonial} size="2x"/>
         </div>
       </div>
     </div>
@@ -262,7 +255,7 @@ function Service(props) {
     delay: 300
   });
 
-  const onChange = function (isVisible) {
+  const onChange = (isVisible) => {
     if (isVisible) {
       setVisible(true)
     }
@@ -279,37 +272,86 @@ function Service(props) {
 }
 
 function Contact() {
+  const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [contactAlert, setContactAlert] = useState("")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [number, setNumber] = useState("")
+  const [address, setAddress] = useState("")
+  const [message, setMessage] = useState("")
+  const [contactAlertId, setContactAlertId] = useState("")
+
+  const onNameChange = event => setName(event.target.value)
+  const onEmailChange = event => setEmail(event.target.value)
+  const onNumberChange = event => setNumber(event.target.value)
+  const onAddressChange = event => setAddress(event.target.value)
+  const onMessageChange = event => setMessage(event.target.value)
+
+  const submitHandler = () => {
+    setButtonDisabled(true);
+
+    const data = {name, email, number, address, message}
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    }
+    fetch('/contact', requestOptions)
+      .then(res => res.json())
+      .then(res => {
+        if(res.message === "error") {
+          setContactAlert("There was a problem trying to send your message. Please try again later.")
+          setContactAlertId("contact-alert-error")
+        } else {
+          setContactAlert("Your message has been successfully sent!")
+          setContactAlertId("contact-alert-success")
+        }
+      })
+  }
+
+  function ContactAlert(props) {
+    return (
+      <div>
+        <p>{props.alert}</p>
+      </div>
+    )
+  }
+
   return (
     <div id="contact-form-wrapper">
-      <form id="contact-form" action="/contact" method="post">
+      <form id="contact-form">
         <div id="contact-form-group">
           <div  className="contact-form-element">
             <label for="name">Name</label>
             <input type="text" className="contact-input" id="name"
-            name="contactName" placeholder="John Doe"/>
+            name="contactName" placeholder="John Doe" onChange={onNameChange}/>
           </div>
           <div  className="contact-form-element">
             <label for="email">Email</label>
             <input type="text" className="contact-input" id="email"
-            name="contactEmail" placeholder="john@example.com"/>
+            name="contactEmail" placeholder="john@example.com" onChange={onEmailChange}/>
           </div>
           <div  className="contact-form-element">
             <label for="number">Number</label>
             <input type="text" className="contact-input" id="number"
-            name="contactNumber" placeholder="000-000-0000"/>
+            name="contactNumber" placeholder="000-000-0000" onChange={onNumberChange}/>
           </div>
           <div className="contact-form-element">
             <label for="address">Address</label>
             <input type="text" className="contact-input" id="address"
-            name="contactAddress" placeholder="123 Fake Street"/>
+            name="contactAddress" placeholder="123 Fake Street" onChange={onAddressChange}/>
           </div>
           <div className="contact-form-element">
             <label for="message">Message</label>
             <textarea type="text" className="contact-input" id="message"
-            name="contactMessage" placeholder="My A/C is not working"/>
+            name="contactMessage" placeholder="My A/C is not working" onChange={onMessageChange}/>
           </div>
-          <div id="contact-form-button" className="contact-form-element">
-            <button type="submit">Contact</button>
+          <div className="contact-form-element">
+            <button id="contact-form-button" type="submit"
+            disabled={buttonDisabled} onClick={submitHandler}>Submit</button>
+          </div>
+          <div id={contactAlertId}>
+            <ContactAlert alert={contactAlert}/>
           </div>
         </div>
       </form>

@@ -27,29 +27,25 @@ app.post('/contact', (req, res) => {
     from: process.env.EMAIL,  // sender address
     to: process.env.EMAIL, // list of receivers
     subject: 'New contact',
-    text: 'name: ' + req.body.contactName
-    + ', email: ' + req.body.contactEmail
-    + ', number: ' + req.body.contactNumber
-    + ', address: ' + req.body.contactAddress
-    + ', message: ' + req.body.contactMessage
+    text: 'name: ' + req.body.name
+    + ', email: ' + req.body.email
+    + ', number: ' + req.body.number
+    + ', address: ' + req.body.address
+    + ', message: ' + req.body.message
   };
-
   transporter.sendMail(mailData, (err, data) => {
     if(err) {
       console.log(err)
+      res.json({message: "error"})
     } else {
       console.log(data)
+      res.json({message: "success"})
     }
   });
 });
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
-
-// Handle GET requests to /api route
-app.get("/api", (req, res) => {
-  res.json({ message: "connected" });
-});
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {

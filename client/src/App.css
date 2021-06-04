@@ -257,6 +257,18 @@ textarea {
 #contact-form-button {
   align-self: center;
 }
+#contact-alert-success {
+  background-color: lightgreen;
+  border-radius: .5em;
+  padding: 0px 10px 0px 10px;
+  margin: 10px auto 0px auto;
+}
+#contact-alert-error {
+  background-color: orangered;
+  border-radius: .5em;
+  padding: 0px 10px 0px 10px;
+  margin: 10px auto 0px auto;
+}
 
 /* footer */
 
