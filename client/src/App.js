@@ -1,11 +1,9 @@
 import './App.css';
-import { useState } from "react";
+import About from "./About.js";
+import Testimonials from "./Testimonials.js";
+import Services from "./Services.js";
+import Contact from "./Contact.js";
 import logo from './images/logo2.png';
-import armstrong from './images/armstrong-air.png';
-import concord from './images/concord-air.png';
-import nuCalgon from './images/nu-calgon.png';
-import { useSpring, animated } from 'react-spring';
-import VisibilitySensor from "react-visibility-sensor";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -18,56 +16,6 @@ library.add(faQuoteRight, faQuoteLeft, faAddressCard, faTools, faComments,
 )
 
 function App() {
-  // spring-react props
-  const img0 = useSpring(
-    {
-      to: { opacity: 1 },
-      from: { opacity: 0 },
-      delay: 400
-    }
-  )
-  const img1 = useSpring(
-    {
-      to: { opacity: 1 },
-      from: { opacity: 0 },
-      delay: 800
-    }
-  )
-  const img2 = useSpring(
-    {
-      to: { opacity: 1 },
-      from: { opacity: 0 },
-      delay: 1200
-    }
-  )
-
-  const services = [{
-    serviceHeader: "Annual Maintenance Plans",
-    serviceDescription: "Regular maintenance will increase the lifespan and "
-    + "efficiency of your HVAC system. During a maintenance various components "
-    + "are thoroughly inspected and their performance is measured to ensure "
-    + "they are operating at peak efficiency. We don't do them."
-  },
-  {
-    serviceHeader: "24 Hour Express Service",
-    serviceDescription: "How are we going to sleep and also answer the phone? "
-    + "If we work 24 hours how are we going to meet the minimum necessary "
-    + "requirements for life? We don't do that either."
-  },
-  {
-    serviceHeader: "Weekend Service",
-    serviceDescription: "We definitely don't do that unless we're feeling real "
-    + "froggy and we never work on Sunday no matter WHAT."
-  },
-  {
-    serviceHeader: "Difficult Equipment Replacements",
-    serviceDescription: "That sounds hard, we're not doing that."
-  },
-  {
-    serviceHeader: "Equipment Brand Variety",
-    serviceDescription: "We don't install anything other than Armstrong Air."
-  }]
-
   return (
     <div className="App">
       <header>
@@ -87,16 +35,7 @@ function App() {
             <p class="loose-text">At Slone Heating and Air we offer equipment
             replacements using the following trustworthy brands: </p>
           </div>
-          <div id="about-logos">
-            <animated.img style={img0} src={armstrong} id="armstrong-logo"
-            class="logo" alt="armstrong logo"/>
-            <br/>
-            <animated.img style={img1} src={concord} id="concord-logo"
-            class="logo" alt="concord logo"/>
-            <br/>
-            <animated.img style={img2} src={nuCalgon} id="nuCalgon-logo"
-            class="logo" alt="Nu-Calgon logo"/>
-          </div>
+          <About/>
         </div>
         <div id="testimonials" class="content-section">
           <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>
@@ -106,14 +45,7 @@ function App() {
         <div id="services" class="content-section">
           <h2>Services <FontAwesomeIcon icon="tools"/></h2>
           <div className="line"/>
-          <div id="services-content-wrapper">
-            <div id="services-content">
-            {services.map((element) =>
-              <Service serviceHeader={element.serviceHeader}
-              serviceDescription={element.serviceDescription}/>
-            )}
-            </div>
-          </div>
+          <Services/>
           <div class="loose-text-wrapper">
             <i class="loose-text">We reserve the right to not do anything we
             don't want to</i>
@@ -136,225 +68,6 @@ function App() {
         <p>This website is still under construction
         <FontAwesomeIcon icon="wrench"/></p>
       </footer>
-    </div>
-  )
-}
-
-function Testimonials() {
-
-  // testimonial component props
-  const testimonials = [{
-    testimonial: "They were good AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    customer: "Big Clarence"
-  },
-  {
-    testimonial: "Leave me alone",
-    customer: "Gauge Adams"
-  },
-  {
-    testimonial: "They're my favorite HVAC company",
-    customer: "Aaron Slone"
-  },
-  {
-    testimonial: "I like them as well",
-    customer: "Ajjea Slone"
-  },
-  {
-    testimonial: "An excellent company ran by an excellent baby boy",
-    customer: "Aaron's Mom"
-  },
-  {
-    testimonial: "The equipment they install is excellent quality",
-    customer: "Tim Jenks"
-  },
-  {
-    testimonial: "Southern Comfort's hoodies are better",
-    customer: "Anonymous Employee"
-  },
-  {
-    testimonial: "EeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeeeEEEEEEEEEEEEEEEEEEe"
-    + "eeEeeeEEeeEEeeEeeEEeeEEeeEEeEEEEEEEEEEeeEeeeeeeEeeEeeEe",
-    customer: "Mini Me"
-  }]
-
-  const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const [activeTestimonialX, setActiveTestimonialX] = useState(0)
-  const [immediate, setImmediate] = useState(false)
-
-  const slide = useSpring({
-    immediate: immediate,
-    from: {translateX: 0},
-    to: {translateX: activeTestimonialX + "%"},
-  });
-
-  const previousTestimonial = () => {
-    if (activeTestimonial === 0) {
-
-    } else {
-      setActiveTestimonialX(110)
-      setTimeout(() => {
-        setActiveTestimonial(activeTestimonial - 1)
-        setImmediate(true)
-        setActiveTestimonialX(-110)
-        setImmediate(false)
-        setActiveTestimonialX(0)
-      }, 300)
-    }
-  }
-
-  const nextTestimonial = () => {
-    if (activeTestimonial === testimonials.length - 1) {
-
-    } else {
-      setActiveTestimonialX(-110)
-      setTimeout(() => {
-        setActiveTestimonial(activeTestimonial + 1)
-        setImmediate(true)
-        setActiveTestimonialX(110)
-        setImmediate(false)
-        setActiveTestimonialX(0)
-      }, 300)
-    }
-  }
-
-  return (
-    <div id="testimonials-content-wrapper">
-      <div id="testimonials-content">
-        <animated.div className="testimonial" style={slide}>
-          <div class="quote-left-wrapper">
-            <FontAwesomeIcon icon="quote-left" size="lg"/>
-          </div>
-          <p><i> {testimonials[activeTestimonial].testimonial} </i></p>
-          <div class="quote-right-wrapper">
-            <FontAwesomeIcon icon="quote-right" size="lg"/>
-          </div>
-          <div className="testimonial-line-wrapper">
-            <div className="testimonial-line"/>
-          </div>
-          <p>- {testimonials[activeTestimonial].customer}</p>
-        </animated.div>
-        <div id="testimonials-controls">
-          <FontAwesomeIcon id="arrow-left" className="testimonial-button"
-          icon="arrow-left" onClick={previousTestimonial} size="2x"/>
-          <FontAwesomeIcon id="arrow-right" className="testimonial-button"
-          icon="arrow-right" onClick={nextTestimonial} size="2x"/>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function Service(props) {
-  const [visible, setVisible] = useState(false)
-
-  const fadeIn = useSpring({
-    from: {opacity: 0},
-    to: {opacity: visible ? 1 : 0},
-    delay: 300
-  });
-
-  const onChange = (isVisible) => {
-    if (isVisible) {
-      setVisible(true)
-    }
-  }
-
-  return (
-    <VisibilitySensor onChange={onChange} partialVisibility={true}>
-      <animated.div className="service" style={fadeIn}>
-        <h2>{props.serviceHeader}</h2>
-        <p>{props.serviceDescription}</p>
-      </animated.div>
-    </VisibilitySensor>
-  )
-}
-
-function Contact() {
-  const [buttonDisabled, setButtonDisabled] = useState(false)
-  const [contactAlert, setContactAlert] = useState("")
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [number, setNumber] = useState("")
-  const [address, setAddress] = useState("")
-  const [message, setMessage] = useState("")
-  const [contactAlertId, setContactAlertId] = useState("")
-
-  const onNameChange = event => setName(event.target.value)
-  const onEmailChange = event => setEmail(event.target.value)
-  const onNumberChange = event => setNumber(event.target.value)
-  const onAddressChange = event => setAddress(event.target.value)
-  const onMessageChange = event => setMessage(event.target.value)
-
-  const submitHandler = () => {
-    setButtonDisabled(true);
-
-    const data = {name, email, number, address, message}
-    const requestOptions = {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(data)
-    }
-    fetch('/contact', requestOptions)
-      .then(res => res.json())
-      .then(res => {
-        if(res.message === "error") {
-          setContactAlert("There was a problem trying to send your message. Please try again later.")
-          setContactAlertId("contact-alert-error")
-        } else {
-          setContactAlert("Your message has been successfully sent!")
-          setContactAlertId("contact-alert-success")
-        }
-      })
-  }
-
-  function ContactAlert(props) {
-    return (
-      <div>
-        <p>{props.alert}</p>
-      </div>
-    )
-  }
-
-  return (
-    <div id="contact-form-wrapper">
-      <form id="contact-form">
-        <div id="contact-form-group">
-          <div  className="contact-form-element">
-            <label for="name">Name</label>
-            <input type="text" className="contact-input" id="name"
-            name="contactName" placeholder="John Doe" onChange={onNameChange}/>
-          </div>
-          <div  className="contact-form-element">
-            <label for="email">Email</label>
-            <input type="text" className="contact-input" id="email"
-            name="contactEmail" placeholder="john@example.com" onChange={onEmailChange}/>
-          </div>
-          <div  className="contact-form-element">
-            <label for="number">Number</label>
-            <input type="text" className="contact-input" id="number"
-            name="contactNumber" placeholder="000-000-0000" onChange={onNumberChange}/>
-          </div>
-          <div className="contact-form-element">
-            <label for="address">Address</label>
-            <input type="text" className="contact-input" id="address"
-            name="contactAddress" placeholder="123 Fake Street" onChange={onAddressChange}/>
-          </div>
-          <div className="contact-form-element">
-            <label for="message">Message</label>
-            <textarea type="text" className="contact-input" id="message"
-            name="contactMessage" placeholder="My A/C is not working" onChange={onMessageChange}/>
-          </div>
-          <div className="contact-form-element">
-            <button id="contact-form-button" type="submit"
-            disabled={buttonDisabled} onClick={submitHandler}>Submit</button>
-          </div>
-          <div id={contactAlertId}>
-            <ContactAlert alert={contactAlert}/>
-          </div>
-        </div>
-      </form>
     </div>
   )
 }
