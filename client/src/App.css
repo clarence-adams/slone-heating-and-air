@@ -254,8 +254,9 @@ textarea {
 #message {
   min-height: 200px
 }
-#contact-form-button {
-  align-self: center;
+#contact-form-button-anchor {
+  text-decoration: none;
+  color: black;
 }
 #contact-alert-success {
   background-color: lightgreen;

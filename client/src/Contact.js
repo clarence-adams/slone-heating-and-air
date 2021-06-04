@@ -28,13 +28,17 @@ function Contact() {
     fetch('/contact', requestOptions)
       .then(res => res.json())
       .then(res => {
-        if(res.message === "error") {
+        if(res.message === "error" || res.message === undefined) {
           setContactAlert("There was a problem trying to send your message. Please try again later.")
           setContactAlertId("contact-alert-error")
         } else {
           setContactAlert("Your message has been successfully sent!")
           setContactAlertId("contact-alert-success")
         }
+      })
+      .catch(() => {
+        setContactAlert("There was a problem trying to send your message. Please try again later.")
+        setContactAlertId("contact-alert-error")
       })
   }
 
@@ -53,31 +57,38 @@ function Contact() {
           <div  className="contact-form-element">
             <label for="name">Name</label>
             <input type="text" className="contact-input" id="name"
-            name="contactName" placeholder="John Doe" onChange={onNameChange}/>
+            name="contactName" value={name} placeholder="John Doe"
+            onChange={onNameChange}/>
           </div>
           <div  className="contact-form-element">
             <label for="email">Email</label>
             <input type="text" className="contact-input" id="email"
-            name="contactEmail" placeholder="john@example.com" onChange={onEmailChange}/>
+            name="contactEmail" value={email} placeholder="john@example.com"
+            onChange={onEmailChange}/>
           </div>
           <div  className="contact-form-element">
             <label for="number">Number</label>
             <input type="text" className="contact-input" id="number"
-            name="contactNumber" placeholder="000-000-0000" onChange={onNumberChange}/>
+            name="contactNumber" value={number} placeholder="000-000-0000"
+            onChange={onNumberChange}/>
           </div>
           <div className="contact-form-element">
             <label for="address">Address</label>
             <input type="text" className="contact-input" id="address"
-            name="contactAddress" placeholder="123 Fake Street" onChange={onAddressChange}/>
+            name="contactAddress" value={address} placeholder="123 Fake Street"
+            onChange={onAddressChange}/>
           </div>
           <div className="contact-form-element">
             <label for="message">Message</label>
             <textarea type="text" className="contact-input" id="message"
-            name="contactMessage" placeholder="My A/C is not working" onChange={onMessageChange}/>
+            name="contactMessage" value={message}
+            placeholder="My A/C is not working" onChange={onMessageChange}/>
           </div>
           <div className="contact-form-element">
             <button id="contact-form-button" type="submit"
-            disabled={buttonDisabled} onClick={submitHandler}>Submit</button>
+            disabled={buttonDisabled} onClick={submitHandler}>
+            <a href="#contact" id="contact-form-button-anchor">Submit</a>
+            </button>
           </div>
           <div id={contactAlertId}>
             <ContactAlert alert={contactAlert}/>
