@@ -1,9 +1,23 @@
+/* Media query for most mobile device screens */
 @media screen and (max-width: 1000px) {
   #testimonials-content {
     width: 66.66% !important;
   }
   #contact-form {
     width: 66.66% !important;
+  }
+}
+
+/* Media query for wide viewports */
+@media screen and (min-width: 1920px) {
+  #testimonials-content {
+    max-width: 16.66% !important;
+  }
+  #services-content {
+    max-width: 33.33% !important;
+  }
+  #contact-form {
+    width: 16.66% !important;
   }
 }
 
@@ -84,6 +98,13 @@ h1 {
   height: 0px;
   width: 33.33%;
   border-bottom: solid #2C455F 5px;
+}
+.loose-text-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.loose-text {
+  max-width: 66.66%;
 }
 #content {
   padding-top: calc(2.5em + 80px);
@@ -179,6 +200,10 @@ h1 {
   text-align: left;
   padding: 0 50px 50px 0;
   word-break: break-word;
+}
+#services-content-wrapper {
+  display: flex;
+  justify-content: center;
 }
 #services-content {
   display: flex;

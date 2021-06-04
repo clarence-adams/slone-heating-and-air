@@ -57,7 +57,7 @@ function App() {
   {
     serviceHeader: "Weekend Service",
     serviceDescription: "We definitely don't do that unless we're feeling real "
-    + "froggy and we never work on Sunday no matter WHAT. PERIODT."
+    + "froggy and we never work on Sunday no matter WHAT."
   },
   {
     serviceHeader: "Difficult Equipment Replacements",
@@ -93,8 +93,10 @@ function App() {
         <div id="about" class="content-section">
           <h2>About Us <FontAwesomeIcon icon="address-card"/></h2>
           <div class="line"/>
-          <p>At Slone Heating and Air we offer equipment replacements using the
-          following trustworthy brands: </p>
+          <div class="loose-text-wrapper">
+            <p class="loose-text">At Slone Heating and Air we offer equipment replacements using the
+            following trustworthy brands: </p>
+          </div>
           <div id="about-logos">
             <animated.img style={img0} src={armstrong} id="armstrong-logo"
             class="logo" alt="armstrong logo"/>
@@ -114,19 +116,25 @@ function App() {
         <div id="services" class="content-section">
           <h2>Services <FontAwesomeIcon icon="tools"/></h2>
           <div className="line"/>
-          <div id="services-content">
+          <div id="services-content-wrapper">
+            <div id="services-content">
             {services.map((element) =>
               <Service serviceHeader={element.serviceHeader}
               serviceDescription={element.serviceDescription}/>
             )}
+            </div>
           </div>
-          <i>We reserve the right to not do anything we don't want to</i>
+          <div class="loose-text-wrapper">
+            <i class="loose-text">We reserve the right to not do anything we don't want to</i>
+          </div>
         </div>
         <div id="contact" class="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
           <div className="line"/>
-          <p>To contact us, fill out the following form and A-Aron will visit
-          you in the middle of the night when you least expect it!</p>
+          <div class="loose-text-wrapper">
+            <p class="loose-text">To contact us, fill out the following form and A-Aron will visit
+            you in the middle of the night when you least expect it!</p>
+          </div>
           <div>
             <Contact/>
           </div>
@@ -187,21 +195,21 @@ function Testimonials() {
   const slide = useSpring({
     immediate: immediate,
     from: {translateX: 0},
-    to: {translateX: activeTestimonialX},
+    to: {translateX: activeTestimonialX + "%"},
   });
 
   const previousTestimonial = () => {
     if (activeTestimonial === 0) {
 
     } else {
-      setActiveTestimonialX(400)
+      setActiveTestimonialX(110)
       setTimeout(() => {
         setActiveTestimonial(activeTestimonial - 1)
         setImmediate(true)
-        setActiveTestimonialX(-400)
+        setActiveTestimonialX(-110)
         setImmediate(false)
         setActiveTestimonialX(0)
-      }, 400)
+      }, 300)
     }
   }
 
@@ -209,14 +217,14 @@ function Testimonials() {
     if (activeTestimonial === testimonials.length - 1) {
 
     } else {
-      setActiveTestimonialX(-400)
+      setActiveTestimonialX(-110)
       setTimeout(() => {
         setActiveTestimonial(activeTestimonial + 1)
         setImmediate(true)
-        setActiveTestimonialX(400)
+        setActiveTestimonialX(110)
         setImmediate(false)
         setActiveTestimonialX(0)
-      }, 400)
+      }, 300)
     }
   }
 
