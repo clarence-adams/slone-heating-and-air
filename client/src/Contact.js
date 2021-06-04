@@ -36,7 +36,7 @@ function Contact() {
         }
       })
       .catch(() => {
-        setContactAlert("There was a problem trying to send your message. Please try again later.")
+        setContactAlert("An error occurred while trying to send your message. Please try again later.")
         setContactAlertId("contact-alert-error")
       })
   }
