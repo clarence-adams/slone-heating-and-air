@@ -28,6 +28,10 @@ function Services() {
   {
     serviceHeader: "Equipment Brand Variety",
     serviceDescription: "We don't install anything other than Armstrong Air."
+  },
+  {
+    serviceHeader: "Duct Cleaning / Sanitization",
+    serviceDescription: "We don't own that expensive machine."
   }]
 
   function Service(props) {
@@ -58,9 +62,9 @@ function Services() {
   return (
     <div id="services-content-wrapper">
       <div id="services-content">
-      {services.map((element) =>
+      {services.map((element, index) =>
         <Service serviceHeader={element.serviceHeader}
-        serviceDescription={element.serviceDescription}/>
+        serviceDescription={element.serviceDescription} key={index}/>
       )}
       </div>
     </div>

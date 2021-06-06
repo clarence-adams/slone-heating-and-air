@@ -30,13 +30,13 @@ function About() {
   return (
     <div id="about-logos">
       <animated.img style={img0} src={armstrong} id="armstrong-logo"
-      class="logo" alt="armstrong logo"/>
+      className="logo" alt="armstrong logo"/>
       <br/>
       <animated.img style={img1} src={concord} id="concord-logo"
-      class="logo" alt="concord logo"/>
+      className="logo" alt="concord logo"/>
       <br/>
       <animated.img style={img2} src={nuCalgon} id="nuCalgon-logo"
-      class="logo" alt="Nu-Calgon logo"/>
+      className="logo" alt="Nu-Calgon logo"/>
     </div>
   )
 }
