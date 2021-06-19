@@ -22,6 +22,7 @@ function Contact() {
     setAddress(data);
   }, []);
 
+  const [allDataValid, setAllDataValid] = useState(false)
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [contactAlert, setContactAlert] = useState("")
   const [contactAlertId, setContactAlertId] = useState("")

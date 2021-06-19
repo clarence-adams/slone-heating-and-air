@@ -47,17 +47,14 @@ function App() {
           <div className="line"/>
           <Services/>
           <div className="loose-text-wrapper">
-            <i className="loose-text">We reserve the right to not do anything we
-            don't want to</i>
           </div>
         </div>
         <div id="contact" className="content-section">
           <h2>Contact <FontAwesomeIcon icon="envelope"/></h2>
           <div className="line"/>
           <div className="loose-text-wrapper">
-            <p className="loose-text">To contact us, fill out the following form and
-             A-Aron will visityou in the middle of the night when you least
-             expect it!</p>
+            <p className="loose-text">To contact us, fill out the following form
+             and we will schedule you as soon as possible.</p>
           </div>
           <div>
             <Contact/>

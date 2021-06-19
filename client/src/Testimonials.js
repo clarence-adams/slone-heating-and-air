@@ -6,14 +6,16 @@ function Testimonials() {
 
   // testimonial component props
   const testimonials = [{
-    testimonial: "They were good AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    customer: "Big Clarence"
+    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet.",
+    customer: "Clarence"
   },
   {
-    testimonial: "Leave me alone",
-    customer: "Gauge Adams"
+    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua.",
+    customer: "John Doe"
   },
   {
     testimonial: "They're my favorite HVAC company",
@@ -24,21 +26,10 @@ function Testimonials() {
     customer: "Ajjea Slone"
   },
   {
-    testimonial: "An excellent company ran by an excellent baby boy",
-    customer: "Aaron's Mom"
-  },
-  {
-    testimonial: "The equipment they install is excellent quality",
-    customer: "Tim Jenks"
-  },
-  {
-    testimonial: "Southern Comfort's hoodies are better",
-    customer: "Anonymous Employee"
-  },
-  {
-    testimonial: "EeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeeeEEEEEEEEEEEEEEEEEEe"
-    + "eeEeeeEEeeEEeeEeeEEeeEEeeEEeEEEEEEEEEEeeEeeeeeeEeeEeeEe",
-    customer: "Mini Me"
+    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua.",
+    customer: "Anonymous"
   }]
 
   const [activeTestimonial, setActiveTestimonial] = useState(0)

@@ -5,33 +5,69 @@ import VisibilitySensor from "react-visibility-sensor";
 function Services() {
   const services = [{
     serviceHeader: "Annual Maintenance Plans",
-    serviceDescription: "Regular maintenance will increase the lifespan and "
-    + "efficiency of your HVAC system. During a maintenance various components "
-    + "are thoroughly inspected and their performance is measured to ensure "
-    + "they are operating at peak efficiency. We don't do them."
+    serviceDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet. Vitae"
+    + " semper quis lectus nulla at volutpat diam ut venenatis. Mi tempus"
+    + " imperdiet nulla malesuada pellentesque elit eget gravida cum. Velit"
+    + " dignissim sodales ut eu. Cras tincidunt lobortis feugiat vivamus."
+    + " Donec pretium vulputate sapien nec sagittis. Mauris rhoncus aenean"
+    + " vel elit."
   },
   {
     serviceHeader: "24 Hour Express Service",
-    serviceDescription: "How are we going to sleep and also answer the phone? "
-    + "If we work 24 hours how are we going to meet the minimum necessary "
-    + "requirements for life? We don't do that either."
+    serviceDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet. Vitae"
+    + " semper quis lectus nulla at volutpat diam ut venenatis. Mi tempus"
+    + " imperdiet nulla malesuada pellentesque elit eget gravida cum. Velit"
+    + " dignissim sodales ut eu. Cras tincidunt lobortis feugiat vivamus."
+    + " Donec pretium vulputate sapien nec sagittis. Mauris rhoncus aenean"
+    + " vel elit."
   },
   {
     serviceHeader: "Weekend Service",
-    serviceDescription: "We definitely don't do that unless we're feeling real "
-    + "froggy and we never work on Sunday no matter WHAT."
+    serviceDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet. Vitae"
+    + " semper quis lectus nulla at volutpat diam ut venenatis. Mi tempus"
+    + " imperdiet nulla malesuada pellentesque elit eget gravida cum. Velit"
+    + " dignissim sodales ut eu. Cras tincidunt lobortis feugiat vivamus."
+    + " Donec pretium vulputate sapien nec sagittis. Mauris rhoncus aenean"
+    + " vel elit."
   },
   {
     serviceHeader: "Difficult Equipment Replacements",
-    serviceDescription: "That sounds hard, we're not doing that."
+    serviceDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet. Vitae"
+    + " semper quis lectus nulla at volutpat diam ut venenatis. Mi tempus"
+    + " imperdiet nulla malesuada pellentesque elit eget gravida cum. Velit"
+    + " dignissim sodales ut eu. Cras tincidunt lobortis feugiat vivamus."
+    + " Donec pretium vulputate sapien nec sagittis. Mauris rhoncus aenean"
+    + " vel elit."
   },
   {
     serviceHeader: "Equipment Brand Variety",
-    serviceDescription: "We don't install anything other than Armstrong Air."
+    serviceDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet. Vitae"
+    + " semper quis lectus nulla at volutpat diam ut venenatis. Mi tempus"
+    + " imperdiet nulla malesuada pellentesque elit eget gravida cum. Velit"
+    + " dignissim sodales ut eu. Cras tincidunt lobortis feugiat vivamus."
+    + " Donec pretium vulputate sapien nec sagittis. Mauris rhoncus aenean"
+    + " vel elit."
   },
   {
     serviceHeader: "Duct Cleaning / Sanitization",
-    serviceDescription: "We don't own that expensive machine."
+    serviceDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing"
+    + " elit, sed do eiusmod tempor incididunt ut labore et dolore magna"
+    + " aliqua. Sagittis eu volutpat odio facilisis mauris sit amet. Vitae"
+    + " semper quis lectus nulla at volutpat diam ut venenatis. Mi tempus"
+    + " imperdiet nulla malesuada pellentesque elit eget gravida cum. Velit"
+    + " dignissim sodales ut eu. Cras tincidunt lobortis feugiat vivamus."
+    + " Donec pretium vulputate sapien nec sagittis. Mauris rhoncus aenean"
+    + " vel elit."
   }]
 
   function Service(props) {
