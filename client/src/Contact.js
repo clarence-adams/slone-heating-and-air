@@ -1,31 +1,45 @@
 import './Contact.css';
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import InputMask from 'react-input-mask'
 
 function Contact() {
   const [name, setName] = useState("")
+  const [isNameValid, setIsNameValid] = useState(false)
+
   const [email, setEmail] = useState("")
+  const [isEmailValid, setIsEmailValid] = useState(false)
+
   const [number, setNumber] = useState("")
+  const [isNumberValid, setIsNumberValid] = useState(false)
+
   const [address, setAddress] = useState("")
+  const [isAddressValid, setIsAddressValid] = useState(false)
+
   const [message, setMessage] = useState("")
 
-  const nameCallback = useCallback((data) => {
-    setName(data);
-  }, []);
-  const emailCallback = useCallback((data) => {
-    setEmail(data);
-  }, []);
-  const numberCallback = useCallback((data) => {
-    setNumber(data);
-  }, []);
-  const addressCallback = useCallback((data) => {
-    setAddress(data);
-  }, []);
-
-  const [allDataValid, setAllDataValid] = useState(false)
+  const [submissionAttempted, setSubmissionAttempted] = useState(false)
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [contactAlert, setContactAlert] = useState("")
   const [contactAlertId, setContactAlertId] = useState("")
+
+  const nameCallbacks = {
+    setValue: (data) => setName(data),
+    setValidity: (data) => setIsNameValid(data)
+  }
+  const emailCallbacks = {
+    setValue: (data) => setEmail(data),
+    setValidity: (data) => setIsEmailValid(data)
+  }
+  const numberCallbacks = {
+    setValue: (data) => setNumber(data),
+    setValidity: (data) => setIsNumberValid(data)
+  }
+  const addressCallbacks = {
+    setValue: (data) => setAddress(data),
+    setValidity: (data) => setIsAddressValid(data)
+  }
+
+  const validatedData = [isNameValid, isEmailValid, isNumberValid, isAddressValid]
 
   const emptyStringRegex = /^$/
   const nameRegex = /^[A-Za-z]+$/
@@ -35,12 +49,15 @@ function Contact() {
   const addressRegex = /\S/
 
   const submitHandler = () => {
+    setSubmissionAttempted(true)
+
     const data = {name, email, number, address, message}
     const requestOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data)
     }
+    
     fetch('/contact', requestOptions)
       .then(res => res.json())
       .then(res => {
@@ -71,6 +88,18 @@ function Contact() {
     )
   }
 
+  // useEffect function that enables or disbles submit button
+  useEffect(() => {
+    console.log(validatedData)
+    if (validatedData.every((element) => element === true) && submissionAttempted) {
+      setButtonDisabled(false)
+    } else if (!submissionAttempted) {
+      setButtonDisabled(false)
+    } else {
+      setButtonDisabled(true)
+    }
+  }, [validatedData])
+
   return (
     <div id="contact-form-wrapper">
       <form id="contact-form">
@@ -78,26 +107,26 @@ function Contact() {
           <div  className="contact-form-element">
             <label for="name">Name</label>
             <ValidatedInput data={name} dataName="name" regex={nameRegex}
-            emptyRegex={emptyStringRegex} parentCallback={nameCallback}
+            emptyRegex={emptyStringRegex} parentCallbacks={nameCallbacks}
             maxlength={"757"} required/>
           </div>
           <div  className="contact-form-element">
             <label for="email">Email</label>
             <ValidatedInput data={email} dataName="email" regex={emailRegex}
-            emptyRegex={emptyStringRegex} parentCallback={emailCallback}
+            emptyRegex={emptyStringRegex} parentCallbacks={emailCallbacks}
             maxlength={"254"} required/>
           </div>
           <div  className="contact-form-element">
             <label for="number">Number</label>
             <ValidatedInput data={number} dataName="number" regex={numberRegex}
             emptyRegex={emptyNumberRegex} mask="+1 (999) 999-9999"
-            alwaysShowMask="true" parentCallback={numberCallback} required/>
+            alwaysShowMask="true" parentCallbacks={numberCallbacks} required/>
           </div>
           <div className="contact-form-element">
             <label for="address">Address</label>
             <ValidatedInput data={address} dataName="address"
             regex={addressRegex} emptyRegex={emptyStringRegex}
-            parentCallback={addressCallback} placeholder="123 Fake Street"
+            parentCallbacks={addressCallbacks} placeholder="123 Fake Street"
             maxlength={"85"}/>
           </div>
           <div className="contact-form-element" id="message-element">
@@ -122,7 +151,6 @@ function Contact() {
 }
 
 function ValidatedInput(props) {
-  const [isDataValid, setIsDataValid] = useState(undefined)
   const [validationAttempted, setValidationAttempted] = useState(false)
   const [borderColor, setBorderColor] = useState({borderColor: 'black'})
   const [validationMessage, setValidationMessage] = useState('')
@@ -137,14 +165,15 @@ function ValidatedInput(props) {
     return capitalizedString
   }
 
+  // validation function
   const validateData = (valid) => {
     if (valid && validationAttempted) {
-      setIsDataValid(true)
+      props.parentCallbacks.setValidity(true)
       setBorderColor({borderColor: 'green'})
       setValidationMessageColor({color: 'green'})
       setValidationMessage(capitalizeFirstLetter(props.dataName) + ' is valid!')
     } else if (!valid && validationAttempted) {
-      setIsDataValid(false)
+      props.parentCallbacks.setValidity(false)
       setBorderColor({borderColor: 'red'})
       setValidationMessageColor({color: 'red'})
       setValidationMessage('Please enter a valid ' + props.dataName)
@@ -152,7 +181,7 @@ function ValidatedInput(props) {
   }
 
   const onChangeHandler = event => {
-    props.parentCallback(event.target.value)
+    props.parentCallbacks.setValue(event.target.value)
     validateData(props.regex.test(event.target.value))
   }
 
@@ -162,6 +191,7 @@ function ValidatedInput(props) {
     }
   }
 
+  // useEffect function calls validation function as validationAttempted state changes
   useEffect(() => {
     validateData(props.regex.test(props.data))
   }, [validationAttempted])

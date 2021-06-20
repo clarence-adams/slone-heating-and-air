@@ -64,6 +64,11 @@
 #contact-form-button:active {
   background-color: #00739A;
 }
+#contact-form-button:disabled {
+  background-color: lightgrey;
+  border: grey solid 2px;
+  cursor: default;
+}
 #contact-form-button-anchor {
   text-decoration: none;
   color: white;
