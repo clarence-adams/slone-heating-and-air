@@ -88,7 +88,7 @@ function Services() {
     return (
       <VisibilitySensor onChange={onChange} partialVisibility={true}>
       <animated.div className="service" style={fadeIn}>
-      <h2>{props.serviceHeader}</h2>
+      <h3>{props.serviceHeader}</h3>
       <p>{props.serviceDescription}</p>
       </animated.div>
       </VisibilitySensor>

@@ -31,11 +31,16 @@ function App() {
         <div id="about" className="content-section">
           <h2>About Us <FontAwesomeIcon icon="address-card"/></h2>
           <div className="line"/>
-          <div className="loose-text-wrapper">
-            <p className="loose-text">At Slone Heating and Air we offer equipment
-            replacements using the following trustworthy brands: </p>
+          <div id="about-content-wrapper">
+            <div id="about-text">
+              <h3>Honesty, Integrity, Expertise</h3>
+              <p>
+                These are the attributes that best describe Slone Heating and Air. 
+                Serving Fayette county and surrounding areas for all of your HVAC needs.
+              </p>
+            </div>
+            <About/>
           </div>
-          <About/>
         </div>
         <div id="testimonials" className="content-section">
           <h2>Testimonials <FontAwesomeIcon icon="comments"/></h2>

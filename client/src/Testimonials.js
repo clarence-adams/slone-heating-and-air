@@ -69,19 +69,20 @@ function Testimonials() {
   return (
     <div id="testimonials-content-wrapper">
       <div id="testimonials-content">
-        <animated.div className="testimonial" style={slide}>
-          <div class="quote-left-wrapper">
-            <FontAwesomeIcon icon="quote-left" size="lg"/>
+        <div id="testimonial-wrapper">
+          <div id="testimonials-content-quote">
+            <FontAwesomeIcon icon="quote-left"/>
           </div>
-          <p><i> {testimonials[activeTestimonial].testimonial} </i></p>
-          <div class="quote-right-wrapper">
-            <FontAwesomeIcon icon="quote-right" size="lg"/>
-          </div>
-          <div className="testimonial-line-wrapper">
-            <div className="testimonial-line"/>
-          </div>
-          <p>- {testimonials[activeTestimonial].customer}</p>
-        </animated.div>
+          <animated.div className="testimonial" style={slide}>
+            <p id="testimonial-text"><i> {testimonials[activeTestimonial].testimonial} </i></p>
+            <div id="testimonial-author">
+              <div className="testimonial-line-wrapper">
+                <div className="testimonial-line"/>
+              </div>
+              <p>- {testimonials[activeTestimonial].customer}</p>   
+            </div>
+          </animated.div>
+        </div>
         <div id="testimonials-controls">
           <FontAwesomeIcon id="arrow-left" className="testimonial-button"
           icon="arrow-left" onClick={previousTestimonial} size="2x"/>
