@@ -75,10 +75,12 @@ function Testimonials() {
           </div>
           <animated.div className="testimonial" style={slide}>
             <p id="testimonial-text"><i> {testimonials[activeTestimonial].testimonial} </i></p>
-            <div id="testimonial-author">
+          </animated.div>
               <div className="testimonial-line-wrapper">
                 <div className="testimonial-line"/>
               </div>
+          <animated.div className="testimonial" style={slide}>
+            <div id="testimonial-author">
               <p>- {testimonials[activeTestimonial].customer}</p>   
             </div>
           </animated.div>

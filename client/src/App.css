@@ -1,3 +1,14 @@
+@media screen and (max-width: 400px) {
+  #about-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #about-text {
+    text-align: center !important;
+    padding: 0 25px 0 25px !important;
+  }
+}
+
 /* Media query for most mobile device screens */
 @media screen and (max-width: 900px) {
   #testimonials-content {
@@ -149,7 +160,7 @@ h1 {
 .testimonial {
   z-index: 0;
   text-align: left;
-  height: 100%;
+  height: 80%;
   word-break: break-word;
   min-width: 0;
 }

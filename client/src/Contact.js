@@ -48,6 +48,8 @@ function Contact() {
   const emptyNumberRegex = /\+1 \(___\) ___-____/
   const addressRegex = /\S/
 
+  // function that sends contact message once button is pressed
+
   const submitHandler = () => {
     setSubmissionAttempted(true)
 
@@ -76,9 +78,14 @@ function Contact() {
       })
   }
 
+  // onChange handler that updates stored message as form is updated
+
   const onChangeMessage = (event) => {
     setMessage(event.target.value)
   }
+
+  // function that contains props so it can be styled according to
+  // the message type (failure or success)
 
   function ContactAlert(props) {
     return (
@@ -88,9 +95,9 @@ function Contact() {
     )
   }
 
-  // useEffect function that enables or disbles submit button
+  // useEffect function that enables or disables submit button
+
   useEffect(() => {
-    console.log(validatedData)
     if (validatedData.every((element) => element === true) && submissionAttempted) {
       setButtonDisabled(false)
     } else if (!submissionAttempted) {
@@ -98,42 +105,43 @@ function Contact() {
     } else {
       setButtonDisabled(true)
     }
+  // eslint-disable-next-line
   }, [validatedData])
 
   return (
     <div id="contact-form-wrapper">
       <form id="contact-form">
         <div id="contact-form-group">
-          <div  className="contact-form-element">
-            <label for="name">Name</label>
+          <div className="contact-form-element">
+            <label htmlFor="name">Name</label>
             <ValidatedInput data={name} dataName="name" regex={nameRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={nameCallbacks}
-            maxlength={"757"} required/>
+            maxLength={"757"} required/>
           </div>
-          <div  className="contact-form-element">
-            <label for="email">Email</label>
+          <div className="contact-form-element">
+            <label htmlFor="email">Email</label>
             <ValidatedInput data={email} dataName="email" regex={emailRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={emailCallbacks}
-            maxlength={"254"} required/>
+            maxLength={"254"} required/>
           </div>
-          <div  className="contact-form-element">
-            <label for="number">Number</label>
+          <div className="contact-form-element">
+            <label htmlFor="number">Number</label>
             <ValidatedInput data={number} dataName="number" regex={numberRegex}
             emptyRegex={emptyNumberRegex} mask="+1 (999) 999-9999"
             alwaysShowMask="true" parentCallbacks={numberCallbacks} required/>
           </div>
           <div className="contact-form-element">
-            <label for="address">Address</label>
+            <label htmlFor="address">Address</label>
             <ValidatedInput data={address} dataName="address"
             regex={addressRegex} emptyRegex={emptyStringRegex}
             parentCallbacks={addressCallbacks} placeholder="123 Fake Street"
-            maxlength={"85"}/>
+            maxLength={"85"}/>
           </div>
           <div className="contact-form-element" id="message-element">
-            <label for="message">Message</label>
+            <label htmlFor="message">Message</label>
             <textarea type="text" className="contact-input" id="message"
             name="contactMessage" onChange={onChangeMessage} value={message}
-            placeholder="My A/C is not working" maxlength={"1000"}/>
+            placeholder="My A/C is not working" maxLength={"1000"}/>
           </div>
           <div className="contact-form-element">
             <button id="contact-form-button" type="submit"
@@ -192,8 +200,10 @@ function ValidatedInput(props) {
   }
 
   // useEffect function calls validation function as validationAttempted state changes
+  
   useEffect(() => {
     validateData(props.regex.test(props.data))
+  // eslint-disable-next-line
   }, [validationAttempted])
 
   return (
