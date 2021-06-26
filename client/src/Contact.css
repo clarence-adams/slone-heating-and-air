@@ -5,6 +5,12 @@
   width: 100%;
   text-align: left;
 }
+.contact-form-label-wrapper {
+  display: flex;
+}
+.red-asterisk {
+  color: red;
+}
 .contact-input {
   /* width minus border width and padding */
   width: calc(100% - 12px);

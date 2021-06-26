@@ -13,7 +13,6 @@ function Contact() {
   const [isNumberValid, setIsNumberValid] = useState(false)
 
   const [address, setAddress] = useState("")
-  const [isAddressValid, setIsAddressValid] = useState(false)
 
   const [message, setMessage] = useState("")
 
@@ -21,32 +20,40 @@ function Contact() {
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [contactAlert, setContactAlert] = useState("")
   const [contactAlertId, setContactAlertId] = useState("")
-
-  const nameCallbacks = {
-    setValue: (data) => setName(data),
-    setValidity: (data) => setIsNameValid(data)
+ 
+  const validatedData = {
+    name: {
+      data: name,
+      dataName: "name",
+      callbacks: {
+        setData: (data) => setName(data),
+        setValidity: (data) => setIsNameValid(data)
+      }
+    },
+    email: {
+      data: email,
+      dataName: "email",
+      callbacks: {
+        setData: (data) => setEmail(data),
+        setValidity: (data) => setIsEmailValid(data)
+      }
+    },
+    number: { 
+      data: number,
+      dataName: "number",
+      callbacks: {
+        setData: (data) => setNumber(data),
+        setValidity: (data) => setIsNumberValid(data)
+      }
+    }
   }
-  const emailCallbacks = {
-    setValue: (data) => setEmail(data),
-    setValidity: (data) => setIsEmailValid(data)
-  }
-  const numberCallbacks = {
-    setValue: (data) => setNumber(data),
-    setValidity: (data) => setIsNumberValid(data)
-  }
-  const addressCallbacks = {
-    setValue: (data) => setAddress(data),
-    setValidity: (data) => setIsAddressValid(data)
-  }
-
-  const validatedData = [isNameValid, isEmailValid, isNumberValid, isAddressValid]
+  const isValidatedDataValid = [isNameValid, isEmailValid, isNumberValid]
 
   const emptyStringRegex = /^$/
   const nameRegex = /^[A-Za-z]+$/
   const emailRegex = /^\S+@\S+\.[A-Za-z]+/
   const numberRegex = /\+1 \(\d{3}\) \d{3}-\d{4}/
   const emptyNumberRegex = /\+1 \(___\) ___-____/
-  const addressRegex = /\S/
 
   // function that sends contact message once button is pressed
 
@@ -78,11 +85,10 @@ function Contact() {
       })
   }
 
-  // onChange handler that updates stored message as form is updated
+  // onChange handlers for unvalidated inputs
 
-  const onChangeMessage = (event) => {
-    setMessage(event.target.value)
-  }
+  const addressOnChangeHandler = (event) => setAddress(event.target.value)
+  const messageOnChangeHandler = (event) => setMessage(event.target.value)
 
   // function that contains props so it can be styled according to
   // the message type (failure or success)
@@ -98,8 +104,18 @@ function Contact() {
   // useEffect function that enables or disables submit button
 
   useEffect(() => {
-    if (validatedData.every((element) => element === true) && submissionAttempted) {
+    if (isValidatedDataValid.every((element) => element === true) && submissionAttempted) {
       setButtonDisabled(false)
+    } else if (isValidatedDataValid.every((element) => element === false) && submissionAttempted) {
+      const keys = Object.keys(validatedData) 
+      
+      keys.forEach((key) => {
+        if (validatedData[key].data === "") {
+          document.getElementById(validatedData[key].dataName).focus()
+          document.getElementById(validatedData[key].dataName).blur()
+        }
+      })
+      setButtonDisabled(true)
     } else if (!submissionAttempted) {
       setButtonDisabled(false)
     } else {
@@ -113,34 +129,41 @@ function Contact() {
       <form id="contact-form">
         <div id="contact-form-group">
           <div className="contact-form-element">
-            <label htmlFor="name">Name</label>
+            <div class="contact-form-label-wrapper">
+              <label htmlFor="name">Name</label>
+              <div class="red-asterisk">*</div>
+            </div>
             <ValidatedInput data={name} dataName="name" regex={nameRegex}
-            emptyRegex={emptyStringRegex} parentCallbacks={nameCallbacks}
+            emptyRegex={emptyStringRegex} parentCallbacks={validatedData.name.callbacks}
             maxLength={"757"} placeholder="John Doe" required/>
           </div>
           <div className="contact-form-element">
-            <label htmlFor="email">Email</label>
+            <div class="contact-form-label-wrapper">
+              <label htmlFor="email">Email</label>
+              <div class="red-asterisk">*</div>
+            </div>
             <ValidatedInput data={email} dataName="email" regex={emailRegex}
-            emptyRegex={emptyStringRegex} parentCallbacks={emailCallbacks}
+            emptyRegex={emptyStringRegex} parentCallbacks={validatedData.email.callbacks}
             maxLength={"254"} placeholder="example@example.com" required/>
           </div>
           <div className="contact-form-element">
-            <label htmlFor="number">Number</label>
+            <div class="contact-form-label-wrapper">
+              <label htmlFor="number">Number</label>
+              <div class="red-asterisk">*</div>
+            </div>
             <ValidatedInput data={number} dataName="number" regex={numberRegex}
             emptyRegex={emptyNumberRegex} mask="+1 (999) 999-9999"
-            alwaysShowMask="true" parentCallbacks={numberCallbacks} required/>
+            alwaysShowMask="true" parentCallbacks={validatedData.number.callbacks} required/>
           </div>
           <div className="contact-form-element">
             <label htmlFor="address">Address</label>
-            <ValidatedInput data={address} dataName="address"
-            regex={addressRegex} emptyRegex={emptyStringRegex}
-            parentCallbacks={addressCallbacks} placeholder="123 Fake Street"
-            maxLength={"85"}/>
+            <input className="contact-input" onChange={addressOnChangeHandler} 
+            placeholder="123 Fake Street, Lexington KY 40505" maxLength={"85"}/>
           </div>
           <div className="contact-form-element" id="message-element">
             <label htmlFor="message">Message</label>
             <textarea type="text" className="contact-input" id="message"
-            name="contactMessage" onChange={onChangeMessage} value={message}
+            name="contactMessage" onChange={messageOnChangeHandler} value={message}
             placeholder="My A/C is not working" maxLength={"1000"}/>
           </div>
           <div className="contact-form-element">
@@ -160,6 +183,7 @@ function Contact() {
 
 function ValidatedInput(props) {
   const [validationAttempted, setValidationAttempted] = useState(false)
+  const [previouslyFocused, setPreviouslyFocused] = useState(false)
   const [borderColor, setBorderColor] = useState({borderColor: 'black'})
   const [validationMessage, setValidationMessage] = useState('')
   const [validationMessageColor, setValidationMessageColor] = useState({color: 'black'})
@@ -189,12 +213,16 @@ function ValidatedInput(props) {
   }
 
   const onChangeHandler = event => {
-    props.parentCallbacks.setValue(event.target.value)
+    props.parentCallbacks.setData(event.target.value)
     validateData(props.regex.test(event.target.value))
   }
+  
+  const focusHandler = () => setPreviouslyFocused(true)
 
   const blurHandler = event => {
     if (!validationAttempted && !props.emptyRegex.test(event.target.value)) {
+      setValidationAttempted(true)
+    } else if (!validationAttempted && props.emptyRegex.test(event.target.value) && previouslyFocused === true) {
       setValidationAttempted(true)
     }
   }
@@ -211,8 +239,8 @@ function ValidatedInput(props) {
       <InputMask id={props.dataName} className='contact-input'
       name={props.dataName} style={borderColor} mask={props.mask}
       alwaysShowMask={props.alwaysShowMask} value={props.data}
-      onChange={onChangeHandler} onBlur={blurHandler} placeholder={props.placeholder}
-      maxLength={props.maxLength}/>
+      onChange={onChangeHandler} onFocus={focusHandler} onBlur={blurHandler} 
+      placeholder={props.placeholder} maxLength={props.maxLength}/>
       <p className='validation-message'
       style={validationMessageColor}>{validationMessage}</p>
     </div>
