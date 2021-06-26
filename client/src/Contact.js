@@ -116,13 +116,13 @@ function Contact() {
             <label htmlFor="name">Name</label>
             <ValidatedInput data={name} dataName="name" regex={nameRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={nameCallbacks}
-            maxLength={"757"} required/>
+            maxLength={"757"} placeholder="John Doe" required/>
           </div>
           <div className="contact-form-element">
             <label htmlFor="email">Email</label>
             <ValidatedInput data={email} dataName="email" regex={emailRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={emailCallbacks}
-            maxLength={"254"} required/>
+            maxLength={"254"} placeholder="example@example.com" required/>
           </div>
           <div className="contact-form-element">
             <label htmlFor="number">Number</label>
