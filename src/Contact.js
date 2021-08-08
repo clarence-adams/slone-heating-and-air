@@ -1,30 +1,30 @@
 import './Contact.css';
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 import InputMask from 'react-input-mask'
 
 function Contact() {
-  const [name, setName] = useState("")
+  const [name, setName] = useState('')
   const [isNameValid, setIsNameValid] = useState(false)
 
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState('')
   const [isEmailValid, setIsEmailValid] = useState(false)
 
-  const [number, setNumber] = useState("")
+  const [number, setNumber] = useState('')
   const [isNumberValid, setIsNumberValid] = useState(false)
 
-  const [address, setAddress] = useState("")
+  const [address, setAddress] = useState('')
 
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState('')
 
   const [submissionAttempted, setSubmissionAttempted] = useState(false)
   const [buttonDisabled, setButtonDisabled] = useState(false)
-  const [contactAlert, setContactAlert] = useState("")
-  const [contactAlertId, setContactAlertId] = useState("")
+  const [contactAlert, setContactAlert] = useState('')
+  const [contactAlertId, setContactAlertId] = useState('')
  
   const validatedData = {
     name: {
       data: name,
-      dataName: "name",
+      dataName: 'name',
       callbacks: {
         setData: (data) => setName(data),
         setValidity: (data) => setIsNameValid(data)
@@ -32,7 +32,7 @@ function Contact() {
     },
     email: {
       data: email,
-      dataName: "email",
+      dataName: 'email',
       callbacks: {
         setData: (data) => setEmail(data),
         setValidity: (data) => setIsEmailValid(data)
@@ -40,7 +40,7 @@ function Contact() {
     },
     number: { 
       data: number,
-      dataName: "number",
+      dataName: 'number',
       callbacks: {
         setData: (data) => setNumber(data),
         setValidity: (data) => setIsNumberValid(data)
@@ -50,7 +50,7 @@ function Contact() {
   const isValidatedDataValid = [isNameValid, isEmailValid, isNumberValid]
 
   const emptyStringRegex = /^$/
-  const nameRegex = /^[A-Za-z]+$/
+  const nameRegex = /^[A-Za-z\s]+$/
   const emailRegex = /^\S+@\S+\.[A-Za-z]+/
   const numberRegex = /\+1 \(\d{3}\) \d{3}-\d{4}/
   const emptyNumberRegex = /\+1 \(___\) ___-____/
@@ -62,26 +62,26 @@ function Contact() {
 
     const data = {name, email, number, address, message}
     const requestOptions = {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     }
     
-    fetch('/contact', requestOptions)
+    fetch('/.netlify/functions/send-email', requestOptions)
       .then(res => res.json())
       .then(res => {
-        if(res.message === "error" || res.message === undefined) {
-          setContactAlert("An error occurred while trying to send your message. Please try again later.")
-          setContactAlertId("contact-alert-error")
-        } else {
-          setContactAlert("Your message has been successfully sent!")
-          setContactAlertId("contact-alert-success")
+        if(res.message === 'error' || res.message === undefined) {
+          setContactAlert('An error occurred while trying to send your message. Please try again later.')
+          setContactAlertId('contact-alert-error')
+        } else if (res.message === 'success') {
+          setContactAlert('Your message has been successfully sent!')
+          setContactAlertId('contact-alert-success')
           setButtonDisabled(true);
         }
       })
       .catch(() => {
-        setContactAlert("An error occurred while trying to send your message. Please try again later.")
-        setContactAlertId("contact-alert-error")
+        setContactAlert('An error occurred while trying to send your message. Please try again later.')
+        setContactAlertId('contact-alert-error')
       })
   }
 
@@ -110,7 +110,7 @@ function Contact() {
       const keys = Object.keys(validatedData) 
       
       keys.forEach((key) => {
-        if (validatedData[key].data === "") {
+        if (validatedData[key].data === '') {
           document.getElementById(validatedData[key].dataName).focus()
           document.getElementById(validatedData[key].dataName).blur()
         }
@@ -125,51 +125,51 @@ function Contact() {
   }, [validatedData])
 
   return (
-    <div id="contact-form-wrapper">
-      <form id="contact-form">
-        <div id="contact-form-group">
-          <div className="contact-form-element">
-            <div class="contact-form-label-wrapper">
-              <label htmlFor="name">Name</label>
-              <div class="red-asterisk">*</div>
+    <div id='contact-form-wrapper'>
+      <form id='contact-form'>
+        <div id='contact-form-group'>
+          <div className='contact-form-element'>
+            <div class='contact-form-label-wrapper'>
+              <label htmlFor='name'>Name</label>
+              <div class='red-asterisk'>*</div>
             </div>
-            <ValidatedInput data={name} dataName="name" regex={nameRegex}
+            <ValidatedInput data={name} dataName='name' regex={nameRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={validatedData.name.callbacks}
-            maxLength={"757"} placeholder="John Doe" required/>
+            maxLength={'757'} placeholder='John Doe' required/>
           </div>
-          <div className="contact-form-element">
-            <div class="contact-form-label-wrapper">
-              <label htmlFor="email">Email</label>
-              <div class="red-asterisk">*</div>
+          <div className='contact-form-element'>
+            <div class='contact-form-label-wrapper'>
+              <label htmlFor='email'>Email</label>
+              <div class='red-asterisk'>*</div>
             </div>
-            <ValidatedInput data={email} dataName="email" regex={emailRegex}
+            <ValidatedInput data={email} dataName='email' regex={emailRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={validatedData.email.callbacks}
-            maxLength={"254"} placeholder="example@example.com" required/>
+            maxLength={'254'} placeholder='example@example.com' required/>
           </div>
-          <div className="contact-form-element">
-            <div class="contact-form-label-wrapper">
-              <label htmlFor="number">Number</label>
-              <div class="red-asterisk">*</div>
+          <div className='contact-form-element'>
+            <div class='contact-form-label-wrapper'>
+              <label htmlFor='number'>Number</label>
+              <div class='red-asterisk'>*</div>
             </div>
-            <ValidatedInput data={number} dataName="number" regex={numberRegex}
-            emptyRegex={emptyNumberRegex} mask="+1 (999) 999-9999"
-            alwaysShowMask="true" parentCallbacks={validatedData.number.callbacks} required/>
+            <ValidatedInput data={number} dataName='number' regex={numberRegex}
+            emptyRegex={emptyNumberRegex} mask='+1 (999) 999-9999'
+            alwaysShowMask='true' parentCallbacks={validatedData.number.callbacks} required/>
           </div>
-          <div className="contact-form-element">
-            <label htmlFor="address">Address</label>
-            <input className="contact-input" onChange={addressOnChangeHandler} 
-            placeholder="123 Fake Street, Lexington KY 40505" maxLength={"85"}/>
+          <div className='contact-form-element'>
+            <label htmlFor='address'>Address</label>
+            <input className='contact-input' onChange={addressOnChangeHandler} 
+            placeholder='123 Fake Street, Lexington KY 40505' maxLength={'85'}/>
           </div>
-          <div className="contact-form-element" id="message-element">
-            <label htmlFor="message">Message</label>
-            <textarea type="text" className="contact-input" id="message"
-            name="contactMessage" onChange={messageOnChangeHandler} value={message}
-            placeholder="My A/C is not working" maxLength={"1000"}/>
+          <div className='contact-form-element' id='message-element'>
+            <label htmlFor='message'>Message</label>
+            <textarea type='text' className='contact-input' id='message'
+            name='contactMessage' onChange={messageOnChangeHandler} value={message}
+            placeholder='My A/C is not working' maxLength={'1000'}/>
           </div>
-          <div className="contact-form-element">
-            <button id="contact-form-button" type="submit"
+          <div className='contact-form-element'>
+            <button id='contact-form-button' type='submit'
             disabled={buttonDisabled} onClick={submitHandler}>
-            <a id="contact-form-button-anchor" href="#contact">
+            <a id='contact-form-button-anchor' href='#contact'>
             Send Message</a></button>
           </div>
           <div id={contactAlertId}>
