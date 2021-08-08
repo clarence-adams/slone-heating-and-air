@@ -83,6 +83,8 @@ function Contact() {
         setContactAlert('An error occurred while trying to send your message. Please try again later.')
         setContactAlertId('contact-alert-error')
       })
+
+    setButtonDisabled(true)
   }
 
   // onChange handlers for unvalidated inputs
