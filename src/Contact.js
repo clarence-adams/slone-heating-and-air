@@ -17,6 +17,7 @@ function Contact() {
   const [message, setMessage] = useState('')
 
   const [submissionAttempted, setSubmissionAttempted] = useState(false)
+  const [submissionSucceeded, setSubmissionSucceeded] = useState(false)
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [contactAlert, setContactAlert] = useState('')
   const [contactAlertId, setContactAlertId] = useState('')
@@ -60,31 +61,36 @@ function Contact() {
   const submitHandler = () => {
     setSubmissionAttempted(true)
 
-    const data = {name, email, number, address, message}
-    const requestOptions = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
-    }
-    
-    fetch('/.netlify/functions/send-email', requestOptions)
-      .then(res => res.json())
-      .then(res => {
-        if(res.message === 'error' || res.message === undefined) {
+    if (name !== '' && email !== '' && number !== '') {
+      const data = {name, email, number, address, message}
+      const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      }
+      
+      fetch('/.netlify/functions/send-email', requestOptions)
+        .then(res => res.json())
+        .then(res => {
+          if(res.message === 'error' || res.message === undefined) {
+            setContactAlert('An error occurred while trying to send your message. Please try again later.')
+            setContactAlertId('contact-alert-error')
+          } else if (res.message === 'success') {
+            setSubmissionSucceeded(true)
+            setContactAlert('Your message has been successfully sent!')
+            setContactAlertId('contact-alert-success')
+            console.log('hello')
+            setButtonDisabled(true)
+          }
+        })
+        .catch(() => {
           setContactAlert('An error occurred while trying to send your message. Please try again later.')
           setContactAlertId('contact-alert-error')
-        } else if (res.message === 'success') {
-          setContactAlert('Your message has been successfully sent!')
-          setContactAlertId('contact-alert-success')
-          setButtonDisabled(true);
-        }
-      })
-      .catch(() => {
-        setContactAlert('An error occurred while trying to send your message. Please try again later.')
-        setContactAlertId('contact-alert-error')
-      })
-
-    setButtonDisabled(true)
+        })
+    } else {
+      setContactAlert('You must enter the required information')
+      setContactAlertId('contact-alert-error')
+    }
   }
 
   // onChange handlers for unvalidated inputs
@@ -103,11 +109,13 @@ function Contact() {
     )
   }
 
-  // useEffect function that enables or disables submit button
+  // useEffect hook that enables or disables submit button
 
   useEffect(() => {
-    if (isValidatedDataValid.every((element) => element === true) && submissionAttempted) {
+    if (isValidatedDataValid.every((element) => element === true) && submissionAttempted && !submissionSucceeded) {
       setButtonDisabled(false)
+    } else if (isValidatedDataValid.every((element) => element === true) && submissionSucceeded) {
+      setButtonDisabled(true)
     } else if (isValidatedDataValid.every((element) => element === false) && submissionAttempted) {
       const keys = Object.keys(validatedData) 
       
@@ -126,32 +134,36 @@ function Contact() {
   // eslint-disable-next-line
   }, [validatedData])
 
+  useEffect(() => {
+    console.log(buttonDisabled)
+  }, [buttonDisabled])
+
   return (
     <div id='contact-form-wrapper'>
       <form id='contact-form'>
         <div id='contact-form-group'>
           <div className='contact-form-element'>
-            <div class='contact-form-label-wrapper'>
+            <div className='contact-form-label-wrapper'>
               <label htmlFor='name'>Name</label>
-              <div class='red-asterisk'>*</div>
+              <div className='red-asterisk'>*</div>
             </div>
             <ValidatedInput data={name} dataName='name' regex={nameRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={validatedData.name.callbacks}
             maxLength={'757'} placeholder='John Doe' required/>
           </div>
           <div className='contact-form-element'>
-            <div class='contact-form-label-wrapper'>
+            <div className='contact-form-label-wrapper'>
               <label htmlFor='email'>Email</label>
-              <div class='red-asterisk'>*</div>
+              <div className='red-asterisk'>*</div>
             </div>
             <ValidatedInput data={email} dataName='email' regex={emailRegex}
             emptyRegex={emptyStringRegex} parentCallbacks={validatedData.email.callbacks}
             maxLength={'254'} placeholder='example@example.com' required/>
           </div>
           <div className='contact-form-element'>
-            <div class='contact-form-label-wrapper'>
+            <div className='contact-form-label-wrapper'>
               <label htmlFor='number'>Number</label>
-              <div class='red-asterisk'>*</div>
+              <div className='red-asterisk'>*</div>
             </div>
             <ValidatedInput data={number} dataName='number' regex={numberRegex}
             emptyRegex={emptyNumberRegex} mask='+1 (999) 999-9999'
@@ -169,10 +181,10 @@ function Contact() {
             placeholder='My A/C is not working' maxLength={'1000'}/>
           </div>
           <div className='contact-form-element'>
-            <button id='contact-form-button' type='submit'
+            <button id='contact-form-button' type='button'
             disabled={buttonDisabled} onClick={submitHandler}>
-            <a id='contact-form-button-anchor' href='#contact'>
-            Send Message</a></button>
+              Send Message
+            </button>
           </div>
           <div id={contactAlertId}>
             <ContactAlert alert={contactAlert}/>
