@@ -36,6 +36,11 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-weight: 600;
+}
+p {
+  font-size: 16px;
+  font-weight: 400;
 }
 .App {
   margin: 0;
@@ -54,7 +59,7 @@ header {
   top: 0;
   z-index: 1;
   width: 100%;
-  height: calc(2.5em + 80px);
+  height: calc(2.5rem + 80px);
 }
 h1 {
   margin: 0;
@@ -93,7 +98,7 @@ h1 {
   margin: 0;
   padding: 0;
   background-color: #17324F;
-  height: 2.5em;
+  height: 2.5rem;
   border-bottom: black solid 5px;
 }
 
