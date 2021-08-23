@@ -19,10 +19,10 @@ const handler = async (event, context) => {
     to: process.env.EMAIL, // list of receivers
     subject: 'New contact',
     text: 'name: ' + JSON.parse(event.body).name
-    + ', email: ' + JSON.parse(event.body).email
-    + ', number: ' + JSON.parse(event.body).number
-    + ', address: ' + JSON.parse(event.body).address
-    + ', message: ' + JSON.parse(event.body).message
+    + '\nemail: ' + JSON.parse(event.body).email
+    + '\nnumber: ' + JSON.parse(event.body).number
+    + '\naddress: ' + JSON.parse(event.body).address
+    + '\n\nmessage: ' + JSON.parse(event.body).message
   }
 
   try {
